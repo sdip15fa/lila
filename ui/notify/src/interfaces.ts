@@ -24,7 +24,7 @@ interface NotificationUser {
 
 interface NotificationContent {
   text: string;
-  user: NotificationUser;
+  user?: NotificationUser;
   [key: string]: any;
 }
 
@@ -54,7 +54,7 @@ export interface Renderers {
   [key: string]: Renderer;
 }
 
-interface Renderer {
+export interface Renderer {
   html(n: Notification): VNode;
   text(n: Notification): string;
 }

@@ -1,5 +1,6 @@
 package lila.ublog
 
+import java.util.regex.Matcher
 import scala.concurrent.duration._
 
 import lila.common.Chronometer
@@ -42,16 +43,16 @@ final class UblogMarkup(baseUrl: config.BaseUrl, assetBaseUrl: config.AssetBaseU
   private def imageParagraph(markup: Html) =
     markup.replace("""<p><img src=""", """<p class="img-container"><img src=""")
 
-  private def unescape(txt: String) = txt.replace("""\\_""", "_")
+  private def unescape(txt: String) = txt.replace("""\_""", "_")
 
-  // https://github.com/ornicar/lila/issues/9767
+  // https://github.com/lichess-org/lila/issues/9767
   // toastui editor escapes `_` as `\_` and it breaks autolinks
   private[ublog] object unescapeUnderscoreInLinks {
     private val hrefRegex    = """href="([^"]+)"""".r
     private val contentRegex = """>([^<]+)</a>""".r
     def apply(markup: Html) = contentRegex.replaceAllIn(
-      hrefRegex.replaceAllIn(markup, m => s"""href="${unescape(m group 1)}""""),
-      m => s""">${unescape(m group 1)}</a>"""
+      hrefRegex.replaceAllIn(markup, m => s"""href="${Matcher.quoteReplacement(unescape(m group 1))}""""),
+      m => s""">${Matcher.quoteReplacement(unescape(m group 1))}</a>"""
     )
   }
 

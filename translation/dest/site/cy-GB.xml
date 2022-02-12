@@ -43,6 +43,8 @@
   <string name="blackResigned">Ildiodd Du</string>
   <string name="whiteLeftTheGame">Gadawodd gwyn y gêm</string>
   <string name="blackLeftTheGame">Gadawodd du y gêm</string>
+  <string name="whiteDidntMove">Ni wnaeth gwyn symud</string>
+  <string name="blackDidntMove">Ni wnaeth du symud</string>
   <string name="requestAComputerAnalysis">Gofyn am ddadansoddiad cyfrifiadurol</string>
   <string name="computerAnalysis">Dadansoddiad cyfrifiadurol</string>
   <string name="computerAnalysisAvailable">Dadansoddiad cyfrifiadurol ar gael</string>
@@ -311,6 +313,7 @@
   <string name="follow">Dilyn</string>
   <string name="following">Yn dilyn</string>
   <string name="unfollow">Peidio â dilyn</string>
+  <string name="followX">Dilyn %s</string>
   <string name="block">Blocio</string>
   <string name="blocked">Blociwyd</string>
   <string name="unblock">Peidio â blocio</string>
@@ -472,6 +475,7 @@
   <string name="tools">Offer</string>
   <string name="increment">Cynyddiad</string>
   <string name="error.required">Maes gofynnol</string>
+  <string name="error.email">Nid yw\'r cyfeiriad ebost yma\'n ddilys</string>
   <string name="ifRatingIsPlusMinusX">Os ydy\'r raddfa ± %s</string>
   <string name="onlyExistingConversations">Dim ond sgyrsiau eisoes</string>
   <string name="onlyFriends">Dim ond ffrindiau</string>
@@ -673,6 +677,7 @@
   <string name="rapidDesc">Gemau chwim: 8 i 25 munud</string>
   <string name="classicalDesc">Gemau clasurol: 25 munud a fwy</string>
   <string name="important">Pwysig</string>
+  <string name="inTheFAQ">yn y FAQ</string>
   <string name="useTheReportForm">defnyddiwch y ffurflen adrodd</string>
   <string name="toRequestSupport">I wneud cais am gymorth, %1$s</string>
   <string name="tryTheContactPage">ceisiwch y tudalen cyswllt</string>
@@ -682,6 +687,8 @@
   <string name="youCannotPostYetPlaySomeGames">Ni allwch bostio yn y fforymau eto. Chwarae ychydig o gemau!</string>
   <string name="subscribe">Tanysgrifio</string>
   <string name="unsubscribe">Dad-danysgrifio</string>
+  <string name="youAreNowPartOfTeam">Rydych nawr yn rhan o\'r tîm.</string>
+  <string name="congratsYouWon">Llongyfarchiadau, gwnaethoch chi ennill!</string>
   <string name="clickToRevealEmailAddress">[Cliciwch i ddangos cyfeiriad ebost]</string>
   <string name="download">Lawrlwytho</string>
   <string name="welcome">Croeso!</string>

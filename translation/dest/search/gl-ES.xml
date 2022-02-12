@@ -29,4 +29,11 @@
   <string name="maxNumber">Número máximo</string>
   <string name="maxNumberExplanation">Número máximo de partidas a devolver</string>
   <string name="include">Incluír</string>
+  <string name="descending">Descendente</string>
+  <string name="ascending">Ascendente</string>
+  <plurals name="gamesFound">
+    <item quantity="one">Atopáronse %s partidas</item>
+    <item quantity="other">Atopáronse %s partidas</item>
+  </plurals>
+  <string name="ratingExplanation" comment="ratingExplanation&#10;&#10;Help text for the 'Rating' field in advanced game search: https://lichess.org/games/search">A puntuación media de ambos xogadores</string>
 </resources>

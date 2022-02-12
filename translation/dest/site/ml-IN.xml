@@ -24,6 +24,7 @@
   <string name="youPlayTheWhitePieces">നിങ്ങൾ വെള്ള കരുകൾ വെച്ച് കളിക്കുന്നു</string>
   <string name="youPlayTheBlackPieces">നിങ്ങൾ കറുപ്പ് കരുകൾ വെച്ച് കളിക്കുന്നു</string>
   <string name="itsYourTurn">നിങ്ങളുടെ കളി!</string>
+  <string name="cheatDetected">കള്ളത്തരം കണ്ടെത്തി</string>
   <string name="kingInTheCenter">കിംഗ് ഇൻ ദി സെന്റർ ഗെയിം</string>
   <string name="threeChecks">മൂനു ചെക്ക് ഗെയിം</string>
   <string name="raceFinished">ഓട്ടം അവസാനിച്ചിരിക്കുന്നു</string>
@@ -46,9 +47,12 @@
   <string name="blackResigned">കറുപ്പു തോൽവി സമ്മതിച്ചു</string>
   <string name="whiteLeftTheGame">വെള്ള കളി ഉപേക്ഷിച്ചു</string>
   <string name="blackLeftTheGame">കറുപ്പു കളി ഉപേക്ഷിച്ചു</string>
+  <string name="whiteDidntMove">വൈറ്റ് നീക്കം നടത്തിയില്ല</string>
+  <string name="blackDidntMove">ബ്ലാക്ക് നീക്കം നടത്തിയില്ല</string>
   <string name="requestAComputerAnalysis">കമ്പ്യൂട്ടർ പരിശോധനക്ക് അപേക്ഷിക്കുക</string>
   <string name="computerAnalysis">കമ്പ്യൂട്ടർ പരിശോധന</string>
   <string name="computerAnalysisAvailable">നിങ്ങൾക്ക് കമ്പ്യൂട്ടർ വിശകലനം ലഭ്യമാണ്</string>
+  <string name="computerAnalysisDisabled">കമ്പ്യൂട്ടർ വിശകലനം പ്രവർത്തനരഹിതമാക്കിയിരിക്കുന്നു</string>
   <string name="analysis">പരിശോധനാ ബോര്‍ഡ്</string>
   <string name="depthX">ആഴം %s</string>
   <string name="usingServerAnalysis">സെർവറിന്റെ സഹായത്താൽ വിശകലനം ചെയ്യുന്നു</string>
@@ -86,6 +90,7 @@
   <string name="noGameFound">ഒരു ഗെയിമും കണ്ടെത്താൻ സാധിച്ചില്ല</string>
   <string name="maybeIncludeMoreGamesFromThePreferencesMenu">പരിഗണന മെനുവിൽ നിന്ന് കൂടുതൽ ഗെയിമുകൾ ഉൾപ്പെടുത്താണോ?</string>
   <string name="openingExplorer">എക്സ്പ്ലോററും ടേബിൾ ബേസും തുറക്കാം</string>
+  <string name="openingEndgameExplorer">ഓപ്പണിങ്ങ്/എൻഡ്ഗെയിം എക്‌സ്‌പ്ലോറർ</string>
   <string name="xOpeningExplorer">%s ഓപ്പണിങ് എക്സ്പ്ലോറർ</string>
   <string name="winPreventedBy50MoveRule">50 നീക്കങ്ങളുടെ നിയമം പ്രകാരം ജയം തടയപ്പെട്ടു</string>
   <string name="lossSavedBy50MoveRule">50 നീക്കങ്ങളുടെ നിയമം പ്രകാരം തോൽവി തടയപ്പെട്ടു</string>
@@ -130,6 +135,8 @@
     <item quantity="one">%s കളിക്കാർ</item>
     <item quantity="other">%s കളിക്കാർ</item>
   </plurals>
+  <string name="drawByMutualAgreement">പരസ്പര സമ്മതത്തോടുകൂടിയുള്ള സമനില</string>
+  <string name="fiftyMovesWithoutProgress">പുരോഗതിയില്ലാതെ 50 നീക്കങ്ങൾ</string>
   <string name="currentGames">ഇപ്പോഴത്തെ കളികൾ</string>
   <plurals name="nbGames">
     <item quantity="one">%s കളികൾ</item>
@@ -358,6 +365,8 @@
   <string name="follow">പിന്തുടരുക</string>
   <string name="following">പിന്തുടരുന്നു</string>
   <string name="unfollow">പിന്തുടരുന്നത് നിര്‍ത്തുക</string>
+  <string name="followX">%s നെ പിന്തുടരുക</string>
+  <string name="unfollowX">%s നെ പിന്തുടരുന്നത് നിര്‍ത്തുക</string>
   <string name="block">തടയുക</string>
   <string name="blocked">തടഞ്ഞു</string>
   <string name="unblock">തടയുന്നത് നിര്‍ത്തുക</string>
@@ -420,6 +429,8 @@
   <string name="boardEditor">പലക ചിട്ടപ്പെടുത്തുക</string>
   <string name="setTheBoard">കളിക്കളം സജ്ജമാക്കുക</string>
   <string name="popularOpenings">പ്രചാരത്തിലുള്ള ഓപ്പണിങ്ങുകൾ</string>
+  <string name="endgamePositions">ഏൻഡ് ഗെയിം പൊസിഷനുകൾ</string>
+  <string name="chess960StartPosition">ചതുരംഗം960 ആരംഭ സ്ഥാനം: %s</string>
   <string name="startPosition">പ്രാരംഭ സ്ഥാനം</string>
   <string name="clearBoard">പലക വ്യക്തമാക്കുക</string>
   <string name="loadPosition">സ്ഥാനത്തു നിന്ന്</string>
@@ -434,6 +445,7 @@
   <string name="firstName">നൽകിയ പേര്</string>
   <string name="lastName">അവസാന പേര്</string>
   <string name="biography">ജീവചരിത്രം</string>
+  <string name="countryOrFlag" comment="countryOrFlag&#10;Appears when you edit your profile. Lets a player add a country/flag (not all flags are for countries) to their profile">രാജ്യം അല്ലെങ്കിൽ പതാക</string>
   <string name="thankYou">നന്ദി!</string>
   <string name="socialMediaLinks">സമൂഹമാധ്യമ ലിങ്കുകൾ</string>
   <string name="inlineNotation">ഇൻഫയൽ നോട്ടെഷൻ</string>
@@ -540,6 +552,8 @@
   <string name="tools">ഉപകരണങ്ങൾ</string>
   <string name="increment">കയറ്റം</string>
   <string name="error.required">ഈ ഭാഗം ആവശ്യമാണ്</string>
+  <string name="error.email">ഈ ഇമെയിൽ അഡ്രസ് സാധുവല്ല</string>
+  <string name="error.email_acceptable">ഈ ഇമെയിൽ വിലാസം സ്വീകാര്യമല്ല. പരിശോധിച്ചുറപ്പാക്കി വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="ifRatingIsPlusMinusX">± %s ക്രമത്തിലാണോ</string>
   <string name="onlyExistingConversations">നിലവിലുള്ള സംഭാഷങ്ങൾ മാത്രം</string>
   <string name="onlyFriends">സുഹൃത്തുക്കൾക്കു മാത്രം</string>

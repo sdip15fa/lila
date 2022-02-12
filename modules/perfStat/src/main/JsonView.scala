@@ -5,6 +5,7 @@ import org.joda.time.format.ISODateTimeFormat
 import play.api.i18n.Lang
 import play.api.libs.json._
 
+import lila.common.Json.{ jodaWrites => _, _ }
 import lila.common.LightUser
 import lila.rating.{ Glicko, Perf, PerfType }
 import lila.user.User
@@ -45,7 +46,7 @@ final class JsonView(getLightUser: LightUser.GetterSync) {
 
 object JsonView {
 
-  private def round(v: Double, depth: Int = 2) = lila.common.Maths.roundAt(v, depth)
+  private def round(v: Double, depth: Int = 2) = lila.common.Maths.roundDownAt(v, depth)
 
   private val isoFormatter = ISODateTimeFormat.dateTime
   implicit private val dateWriter: Writes[DateTime] = Writes { d =>

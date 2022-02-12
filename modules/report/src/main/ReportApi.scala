@@ -64,7 +64,7 @@ final class ReportApi(
           )
           .flatMap { prev =>
             val report = Report.make(scored, prev)
-            lila.mon.mod.report.create(report.reason.key).increment()
+            lila.mon.mod.report.create(report.reason.key, scored.score.value.toInt).increment()
             if (
               report.isRecentComm &&
               report.score.value >= thresholds.discord() &&
@@ -242,7 +242,8 @@ final class ReportApi(
           .void
     } yield ()
 
-  def autoBoostReport(winnerId: User.ID, loserId: User.ID): Funit =
+  // `seriousness` depends on the number of previous warnings, and number of games throwed away
+  def autoBoostReport(winnerId: User.ID, loserId: User.ID, seriousness: Int): Funit =
     securityApi.shareAnIpOrFp(winnerId, loserId) zip
       userRepo.pair(winnerId, loserId) zip getLichessReporter flatMap {
         case ((isSame, Some((winner, loser))), reporter) if !winner.lame && !loser.lame =>
@@ -255,12 +256,13 @@ final class ReportApi(
               suspect = Suspect(winner),
               reason = Reason.Boost,
               text = s"Boosting: farms rating points from @${loser.username} ($loginsText)"
-            )
+            ),
+            _ + Report.Score(seriousness)
           )
         case _ => funit
       }
 
-  def autoSandbagReport(winnerIds: List[User.ID], loserId: User.ID): Funit =
+  def autoSandbagReport(winnerIds: List[User.ID], loserId: User.ID, seriousness: Int): Funit =
     userRepo.byId(loserId) zip getLichessReporter flatMap {
       case (Some(loser), reporter) if !loser.lame =>
         create(
@@ -269,7 +271,8 @@ final class ReportApi(
             suspect = Suspect(loser),
             reason = Reason.Boost,
             text = s"Sandbagging: throws games to ${winnerIds.map("@" + _) mkString " "}"
-          )
+          ),
+          _ + Report.Score(seriousness)
         )
       case _ => funit
     }
@@ -315,7 +318,7 @@ final class ReportApi(
       )
       .void
 
-  def autoCommReport(userId: User.ID, text: String): Funit =
+  def autoCommReport(userId: User.ID, text: String, critical: Boolean): Funit =
     getSuspect(userId) zip getLichessReporter flatMap {
       case (Some(suspect), reporter) =>
         create(
@@ -325,7 +328,7 @@ final class ReportApi(
             reason = Reason.Comm,
             text = text
           ),
-          _ atLeast 40
+          score = _ * (if (critical) 2 else 1)
         )
       case _ => funit
     }

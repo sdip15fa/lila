@@ -324,7 +324,7 @@
   <string name="openingExplorerAndTablebase">Knihovna zahájení / tablebase koncovek</string>
   <string name="takeback">Vrátit tah</string>
   <string name="proposeATakeback">Navrhnout vrácení tahu</string>
-  <string name="takebackPropositionSent">Návrh na vrácení byl tahu odeslán</string>
+  <string name="takebackPropositionSent">Návrh na vrácení tahu byl odeslán</string>
   <string name="takebackPropositionDeclined">Návrh na vrácení tahu byl odmítnut</string>
   <string name="takebackPropositionAccepted">Návrh na vrácení tahu byl přijat</string>
   <string name="takebackPropositionCanceled">Návrh na vrácení tahu byl zrušen</string>
@@ -576,7 +576,7 @@
   <string name="privacyPolicy">Zásady ochrany osobních údajů</string>
   <string name="letOtherPlayersFollowYou">Umožnit ostatním hráčům následovat Tě</string>
   <string name="letOtherPlayersChallengeYou">Umožnit ostatním hráčům vyzvat Tě</string>
-  <string name="letOtherPlayersInviteYouToStudy">Nechat ostatní hráče pozvat Vás ke studii</string>
+  <string name="letOtherPlayersInviteYouToStudy">Umožnit ostatním hráčům pozvat Vás ke studii</string>
   <string name="sound">Zvuky</string>
   <string name="none">Žádné</string>
   <string name="fast">Rychlé</string>
@@ -687,7 +687,7 @@
   <string name="keyShowOrHideComments">zobrazte/skryjte komentáře</string>
   <string name="keyEnterOrExitVariation">Zobraz variantu</string>
   <string name="newTournament">Nový turnaj</string>
-  <string name="tournamentHomeTitle">Šachový turnaj nabízí různé časové možnosti a varianty</string>
+  <string name="tournamentHomeTitle">Šachové turnaje nabízejí různé časové možnosti a varianty</string>
   <string name="tournamentHomeDescription">Zahrajte si rychlý šachový turnaj! Připojte se k oficiálnímu plánovanému turnaji, nebo si vytvořte vlastní. Bullet, Blitz, Klasické, Chess960(Fisherovky), Král v centru, Tři šachy a další možnosti jsou k dispozici pro nekonečnou šachovou zábavu.</string>
   <string name="tournamentNotFound">Turnaj nenalezen</string>
   <string name="tournamentDoesNotExist">Tento turnaj neexistuje.</string>
@@ -724,7 +724,7 @@
   <string name="analysisShapesHowTo">Kliknutím se shiftem či kliknutím pravým tlačítkem lze kreslit do šachovnice kolečka a šipky.</string>
   <string name="letOtherPlayersMessageYou">Povolit zprávy od ostatních hráčů</string>
   <string name="receiveForumNotifications">Dostat oznámení, pokud jste zmíněni ve fóru</string>
-  <string name="shareYourInsightsData">Sdílejte výsledky analýzy vašeho hraní</string>
+  <string name="shareYourInsightsData">Sdílet výsledky analýzy vašeho hraní</string>
   <string name="withNobody">S nikým</string>
   <string name="withFriends">S přáteli</string>
   <string name="withEverybody">Se všemi</string>

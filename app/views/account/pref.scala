@@ -121,7 +121,12 @@ object pref {
             ),
             setting(
               promoteToQueenAutomatically(),
-              radios(form("behavior.autoQueen"), translatedAutoQueenChoices)
+              frag(
+                radios(form("behavior.autoQueen"), translatedAutoQueenChoices),
+                div(cls := "help text shy", dataIcon := "")(
+                  explainPromoteToQueenAutomatically()
+                )
+              )
             ),
             setting(
               claimDrawOnThreefoldRepetitionAutomatically(),
@@ -138,6 +143,12 @@ object pref {
             setting(
               castleByMovingTheKingTwoSquaresOrOntoTheRook(),
               radios(form("behavior.rookCastle"), translatedRookCastleChoices)
+            ),
+            div(id := "correspondence-email-notif")(
+              setting(
+                correspondenceEmailNotification(),
+                radios(form("behavior.corresEmailNotif"), booleanChoices)
+              )
             ),
             setting(
               inputMovesWithTheKeyboard(),
@@ -156,7 +167,7 @@ object pref {
               radios(form("behavior.scrollMoves"), booleanChoices)
             )
           ),
-          categFieldset(PrefCateg.Privacy, categ)(
+          categFieldset(PrefCateg.Site, categ)(
             setting(
               trans.letOtherPlayersFollowYou(),
               radios(form("follow"), booleanChoices)
@@ -180,6 +191,15 @@ object pref {
             setting(
               trans.shareYourInsightsData(),
               radios(form("insightShare"), translatedInsightShareChoices)
+            ),
+            setting(
+              showPlayerRatings(),
+              frag(
+                radios(form("ratings"), booleanChoices),
+                div(cls := "help text shy", dataIcon := "")(
+                  explainShowPlayerRatings()
+                )
+              )
             )
           ),
           p(cls := "saved text none", dataIcon := "")(yourPreferencesHaveBeenSaved())

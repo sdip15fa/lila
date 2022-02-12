@@ -29,6 +29,8 @@ case class Puzzle(
   } err s"Can't apply puzzle $id first move"
 
   def color = fen.color.fold[chess.Color](chess.White)(!_)
+
+  def hasTheme(theme: PuzzleTheme) = themes(theme.key)
 }
 
 object Puzzle {
@@ -96,6 +98,7 @@ object Puzzle {
     val plays    = "plays"
     val themes   = "themes"
     val day      = "day"
+    val issue    = "issue"
     val dirty    = "dirty" // themes need to be denormalized
   }
 

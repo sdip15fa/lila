@@ -160,7 +160,7 @@ export default class RoundController {
       }
     });
 
-    if (this.isPlaying()) ab.init(this);
+    if (!this.opts.noab && this.isPlaying()) ab.init(this);
   }
 
   private showExpiration = () => {
@@ -293,7 +293,7 @@ export default class RoundController {
     return (
       d.pref.replay === Prefs.Replay.Always ||
       (d.pref.replay === Prefs.Replay.OnlySlowGames &&
-        (d.game.speed === 'classical' || d.game.speed === 'unlimited' || d.game.speed === 'correspondence'))
+        (d.game.speed === 'classical' || d.game.speed === 'correspondence'))
     );
   };
 
@@ -479,7 +479,7 @@ export default class RoundController {
     if (!this.replaying() && playedColor != d.player.color) {
       // atrocious hack to prevent race condition
       // with explosions and premoves
-      // https://github.com/ornicar/lila/issues/343
+      // https://github.com/lichess-org/lila/issues/343
       const premoveDelay = d.game.variant.key === 'atomic' ? 100 : 1;
       setTimeout(() => {
         if (!this.chessground.playPremove() && !this.playPredrop()) {
@@ -791,6 +791,15 @@ export default class RoundController {
       speech.setup(this);
 
       wakeLock.request();
+
+      setTimeout(() => {
+        if ($('#KeyboardO,#show_btn,#shadowHostId').length) {
+          alert('Play enhancement extensions are no longer allowed!');
+          lichess.socket.destroy();
+          this.setRedirecting();
+          location.href = '/page/play-extensions';
+        }
+      }, 1000);
 
       this.onChange();
     }, 800);

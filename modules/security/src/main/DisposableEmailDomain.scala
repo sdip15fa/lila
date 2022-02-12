@@ -49,7 +49,12 @@ private object DisposableEmailDomain {
   private val staticBlacklist = Set(
     "lichess.org",
     "gamil.com",
-    "gmali.com"
+    "gmeil.com",
+    "gmali.com",
+    "gmil.com",
+    "gamail.com",
+    "gnail.com",
+    "hotamil.com"
   )
 
   private val whitelist = Set(
@@ -200,6 +205,7 @@ private object DisposableEmailDomain {
     "unitybox.de",
     "volki.at",
     /* others */
-    "skole.hr"
+    "skole.hr",
+    "freeshell.org"
   )
 }

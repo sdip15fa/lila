@@ -17,6 +17,8 @@
   <string name="stalemate">Langkah buntu</string>
   <string name="white">Putih</string>
   <string name="black">Hitam</string>
+  <string name="asWhite">sebagai Putih</string>
+  <string name="asBlack">sebagai Hitam</string>
   <string name="randomColor">Warna acak</string>
   <string name="createAGame">Mulai permainan baru</string>
   <string name="whiteIsVictorious">Putih menang</string>
@@ -168,6 +170,9 @@
   <plurals name="nbHours">
     <item quantity="other">%s jam</item>
   </plurals>
+  <plurals name="nbMinutes">
+    <item quantity="other">%s menit</item>
+  </plurals>
   <string name="time">Waktu</string>
   <string name="rating">Rating</string>
   <string name="ratingStats">Statistik rating</string>
@@ -316,6 +321,7 @@
   <string name="leaderboard">Peringkat Terbaik</string>
   <string name="pasteTheFenStringHere">Paste string FEN di sini</string>
   <string name="pasteThePgnStringHere">Paste string PGN di sini</string>
+  <string name="orUploadPgnFile">Atau muat berkas PGN</string>
   <string name="fromPosition">Dari posisi</string>
   <string name="continueFromHere">Lanjutkan dari sini</string>
   <string name="toStudy">Studi</string>
@@ -611,7 +617,7 @@
   <string name="downloadRaw">Unduh mentah</string>
   <string name="downloadImported">Unduh permainan yang telah dimasukkan</string>
   <string name="crosstable">Napak tilas</string>
-  <string name="youCanAlsoScrollOverTheBoardToMoveInTheGame">Anda juga bisa menggunakan tombol gulung untuk bergerak dalam permainan</string>
+  <string name="youCanAlsoScrollOverTheBoardToMoveInTheGame">Anda juga bisa menggunakan scroll untuk bergerak dalam permainan.</string>
   <string name="scrollOverComputerVariationsToPreviewThem">Letakkan mouse diatas variasi komputer untuk meninjau hal tersebut.</string>
   <string name="analysisShapesHowTo">Tekan shift+klik atau klik-kanan untuk menggambar lingkaran dan panah di papan.</string>
   <string name="letOtherPlayersMessageYou">Memperbolehkan pemain lain mengirim pesan untuk Anda</string>
@@ -647,7 +653,7 @@
   <string name="xHostsY">%1$s tuan rumah %2$s</string>
   <string name="xJoinsY">%1$s bergabung %2$s</string>
   <string name="xLikesY">%1$s suka %2$s</string>
-  <string name="quickPairing">Pencarian lawan dengan cepat</string>
+  <string name="quickPairing">Pencarian cepat</string>
   <string name="lobby">Ruang Lobi</string>
   <string name="anonymous">Tanpa Nama</string>
   <string name="yourScore">Skor Anda: %s</string>
@@ -841,4 +847,7 @@ Kosongkan untuk memulai permainan dari posisi awal yang normal.</string>
   <string name="abortTheGame">Batalkan permainan</string>
   <string name="resignTheGame">Menyerah dari permainan</string>
   <string name="youCantStartNewGame">Anda tidak dapat memulai permainan baru sampai permainan ini selesai.</string>
+  <string name="since">Sejak</string>
+  <string name="until">Hingga</string>
+  <string name="switchSides">Tukar Sisi</string>
 </resources>

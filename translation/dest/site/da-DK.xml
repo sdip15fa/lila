@@ -17,6 +17,8 @@
   <string name="stalemate">Pat</string>
   <string name="white">Hvid</string>
   <string name="black">Sort</string>
+  <string name="asWhite">som hvid</string>
+  <string name="asBlack">som sort</string>
   <string name="randomColor">Tilfældig farve</string>
   <string name="createAGame">Opret et parti</string>
   <string name="whiteIsVictorious">Hvid har vundet</string>
@@ -181,18 +183,22 @@
     <item quantity="one">%s time</item>
     <item quantity="other">%s timer</item>
   </plurals>
+  <plurals name="nbMinutes">
+    <item quantity="one">%s minut</item>
+    <item quantity="other">%s minutter</item>
+  </plurals>
   <string name="time">Tid</string>
   <string name="rating">Rating</string>
   <string name="ratingStats">Ratingstatistik</string>
   <string name="username">Brugernavn</string>
-  <string name="usernameOrEmail">Brugernavn eller Email</string>
+  <string name="usernameOrEmail">Brugernavn eller e-mail</string>
   <string name="changeUsername">Ændr brugernavn</string>
-  <string name="changeUsernameNotSame">Kun størrelsen af bogstaverne kan ændres. For eksempel \"holgerdanske\" til \"HolgerDanske\".</string>
+  <string name="changeUsernameNotSame">Kun størrelsen af bogstaverne kan ændres. For eksempel \"bentlarsen\" til \"BentLarsen\".</string>
   <string name="changeUsernameDescription">Ændr dit brugernavn. Dette kan kun gøres én gang og du må kun ændre i dit brugernavns bogstavstørrelser.</string>
   <string name="password">Adgangskode</string>
   <string name="changePassword">Skift adgangskode</string>
   <string name="changeEmail">Skift e-mail</string>
-  <string name="email">Email</string>
+  <string name="email">E-mail</string>
   <string name="passwordReset">Nulstil adgangskode</string>
   <string name="forgotPassword">Glemt adgangskode?</string>
   <string name="rank">Rang</string>
@@ -344,6 +350,7 @@
   <string name="leaderboard">Førertavle</string>
   <string name="pasteTheFenStringHere">Indsæt FEN-teksten her</string>
   <string name="pasteThePgnStringHere">Indsæt PGN-teksten her</string>
+  <string name="orUploadPgnFile">Eller upload en PGN-fil</string>
   <string name="fromPosition">Fra stilling</string>
   <string name="continueFromHere">Fortsæt herfra</string>
   <string name="toStudy">Studér</string>
@@ -403,7 +410,7 @@
   <string name="tournamentCalendar">Turneringskalender</string>
   <string name="conditionOfEntry">Betingelser for deltagelse:</string>
   <string name="advancedSettings">Avancerede indstillinger</string>
-  <string name="safeTournamentName">Vælg et meget sikkert navn til turneringen.</string>
+  <string name="safeTournamentName">Vælg et meget ufarligt navn til turneringen.</string>
   <string name="inappropriateNameWarning">Selv noget lidt upassende kan resultere i at din konto lukkes.</string>
   <string name="emptyTournamentName">Lad stå tomt for at navngive turneringen efter en tilfældig stormester.</string>
   <string name="recommendNotTouching">Vi anbefaler at ikke ændre disse.</string>
@@ -442,7 +449,7 @@
   <string name="reportXToModerators">Rapporter %s til administratorer</string>
   <string name="profileCompletion">Profil færdiggørelse: %s</string>
   <string name="xRating">%s rating</string>
-  <string name="ifNoneLeaveEmpty">Hvis ingen, efterlad tom</string>
+  <string name="ifNoneLeaveEmpty">Hvis ingen, lad den være tom</string>
   <string name="gameCompletionRate">Gennemførelsesprocent af spil: %s</string>
   <string name="profile">Profil</string>
   <string name="editProfile">Redigér profil</string>
@@ -452,6 +459,7 @@
   <string name="countryOrFlag" comment="countryOrFlag&#10;Appears when you edit your profile. Lets a player add a country/flag (not all flags are for countries) to their profile">Land eller flag</string>
   <string name="thankYou">Tak!</string>
   <string name="socialMediaLinks">Links til sociale medier</string>
+  <string name="oneUrlPerLine" comment="oneUrlPerLine&#10;&#10;Appears in the 'Social media links' section for when you edit your profile, to display URLs associated with you: https://lichess.org/account/profile">En URL pr. linje.</string>
   <string name="inlineNotation">Notation uden linjeskift</string>
   <string name="previouslyOnLichessTV">Tidligere på Lichess TV</string>
   <string name="onlinePlayers">Online spillere</string>
@@ -502,7 +510,7 @@
   <string name="invalidUsernameOrPassword">Ugyldigt brugernavn eller adgangskode</string>
   <string name="incorrectPassword">Forkert adgangskode</string>
   <string name="invalidAuthenticationCode">Ugyldig godkendelseskode</string>
-  <string name="emailMeALink">Email mig et link</string>
+  <string name="emailMeALink">E-mail mig et link</string>
   <string name="currentPassword">Nuværende adgangskode</string>
   <string name="newPassword">Ny adgangskode</string>
   <string name="newPasswordAgain">Ny adgangskode (igen)</string>
@@ -560,10 +568,10 @@
   <string name="error.email_acceptable">Denne e-mailadresse kan ikke accepteres. Dobbelttjek den, og prøv igen.</string>
   <string name="error.email_unique">E-mailadresse ugyldig eller allerede brugt</string>
   <string name="error.email_different">Dette er allerede din e-mailadresse</string>
-  <string name="error.minLength" comment="error.minLength&#10;&#10;%s is a number  This is generic error message for when the length of text that you have entered in a form is too long.">Minimumslængde er %s</string>
-  <string name="error.maxLength" comment="error.maxLength&#10;&#10;%s is a number&#10;&#10;This is generic error message for when the length of text that you have entered in a form is too long.&#10;&#10;Examples of forms with a maximum length requirement might be account or streamer names.">Maksimumslængde er %s</string>
-  <string name="error.min" comment="error.minLength&#10;&#10;%s is a number.&#10;&#10;This is generic error message for when the number entered is too low. For example, the length of text that you have entered in a form is too short.">Skal være større eller lig med %s</string>
-  <string name="error.max" comment="error.maxLength&#10;&#10;%s is a number.&#10;&#10;This is generic error message for when the number entered is too high. For example, the amount of text that you have entered in a form is too great.">Skal være mindre end eller lig med %s</string>
+  <string name="error.minLength">Minimumslængde er %s</string>
+  <string name="error.maxLength">Maksimumslængde er %s</string>
+  <string name="error.min">Skal være større eller lig med %s</string>
+  <string name="error.max">Skal være mindre end eller lig med %s</string>
   <string name="ifRatingIsPlusMinusX">Hvis ratingen er ± %s</string>
   <string name="onlyExistingConversations">Kun eksisterende samtaler</string>
   <string name="onlyFriends">Kun venner</string>
@@ -586,7 +594,7 @@
   <string name="about">Om</string>
   <string name="aboutX">Om %s</string>
   <string name="xIsAFreeYLibreOpenSourceChessServer">%1$s er en gratis (%2$s), uafhængig, reklamefri, open source skak-server.</string>
-  <string name="really">virkelig</string>
+  <string name="really">det er sandt</string>
   <string name="contribute">Bidrag</string>
   <string name="termsOfService">Servicevilkår</string>
   <string name="sourceCode">Kildekode</string>
@@ -637,9 +645,9 @@
   <string name="yourRating">Din rating</string>
   <string name="cumulative">Akkumuleret</string>
   <string name="glicko2Rating">Glicko-2 rating</string>
-  <string name="checkYourEmail">Tjek din email</string>
-  <string name="weHaveSentYouAnEmailClickTheLink">Vi har sendt dig en email. Klik på linket i emailen for at aktivere din konto.</string>
-  <string name="ifYouDoNotSeeTheEmailCheckOtherPlaces">Hvis du ikke kan se emailen, bør du kontrollere andre steder den kan være endt, som i din junk, spam eller andre mapper.</string>
+  <string name="checkYourEmail">Tjek din e-mail</string>
+  <string name="weHaveSentYouAnEmailClickTheLink">Vi har sendt dig en e-mail. Klik på linket i e-mailen for at aktivere din konto.</string>
+  <string name="ifYouDoNotSeeTheEmailCheckOtherPlaces">Hvis du ikke kan se e-mailen, bør du kontrollere andre steder den kan være endt, som i din junk, spam eller andre mapper.</string>
   <string name="weHaveSentYouAnEmailTo">Vi har sendt en e-mail til %s. Klik på linket i e-mailen for at nulstille din adgangskode.</string>
   <string name="byRegisteringYouAgreeToBeBoundByOur">Ved at registrere, accepterer du at være bundet af vores %s.</string>
   <string name="readAboutOur">Læs om vores %s.</string>
@@ -884,4 +892,8 @@ Lad stå tomt for at starte partier fra den normale udgangsstilling.</string>
   <string name="abortTheGame">Afbryd partiet</string>
   <string name="resignTheGame">Giv op i partiet</string>
   <string name="youCantStartNewGame">Du kan ikke starte et nyt parti, før dette er afsluttet.</string>
+  <string name="since">Siden</string>
+  <string name="until">Indtil</string>
+  <string name="lichessDbExplanation">Ratede partier indsamlet fra alle Lichess-spillere</string>
+  <string name="switchSides">Skift side</string>
 </resources>

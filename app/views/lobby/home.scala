@@ -31,7 +31,8 @@ object home {
                   "remainingSeconds" -> (pb.remainingSeconds + 3)
                 )
               },
-              "i18n" -> i18nJsObject(i18nKeys)
+              "showRatings" -> ctx.pref.showRatings,
+              "i18n"        -> i18nJsObject(i18nKeys)
             )
           )})"""
         )
@@ -46,12 +47,13 @@ object home {
           url = netBaseUrl,
           description = trans.siteDescription.txt()
         )
-        .some
+        .some,
+      withHrefLangs = "".some
     ) {
       main(
         cls := List(
           "lobby"            -> true,
-          "lobby-nope"       -> (playban.isDefined || currentGame.isDefined),
+          "lobby-nope"       -> (playban.isDefined || currentGame.isDefined || homepage.hasUnreadLichessMessage),
           "lobby--no-simuls" -> simuls.isEmpty
         )
       )(
@@ -66,7 +68,7 @@ object home {
               href := routes.Setup.hookForm,
               cls := List(
                 "button button-metal config_hook" -> true,
-                "disabled"                        -> (playban.isDefined || currentGame.isDefined || ctx.isBot)
+                "disabled"                        -> (playban.isDefined || currentGame.isDefined || hasUnreadLichessMessage || ctx.isBot)
               ),
               trans.createAGame()
             ),
@@ -108,6 +110,7 @@ object home {
           )
         ),
         currentGame.map(bits.currentGameInfo) orElse
+          hasUnreadLichessMessage.option(bits.showUnreadLichessMessage) orElse
           playban.map(bits.playbanInfo) getOrElse {
             if (ctx.blind) blindLobby(blindGames)
             else bits.lobbyApp

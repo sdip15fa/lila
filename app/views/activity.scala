@@ -14,7 +14,7 @@ object activity {
 
   def apply(u: User, as: Iterable[lila.activity.ActivityView])(implicit ctx: Context) =
     div(cls := "activity")(
-      as.toSeq map { a =>
+      as.toSeq filterNot (_.isEmpty) map { a =>
         st.section(
           h2(semanticDate(a.interval.getStart)),
           div(cls := "entries")(
@@ -246,13 +246,15 @@ object activity {
             else trans.activity.joinedNbSimuls.pluralSame(simuls.size),
             subTag(
               simuls.map { s =>
+                val win = s.pairingOf(u.id).flatMap(_.wins)
                 div(
                   a(href := routes.Simul.show(s.id))(
                     s.name,
                     " simul by ",
                     userIdLink(s.hostId.some)
                   ),
-                  scoreFrag(Score(s.wins, s.losses, s.draws, none))
+                  if (isHost) scoreFrag(Score(s.wins, s.losses, s.draws, none))
+                  else scoreFrag(Score(win.has(true) ?? 1, win.has(false) ?? 1, win.isEmpty ?? 1, none))
                 )
               }
             )
@@ -362,8 +364,8 @@ object activity {
       )}</score>"""
     }
 
-  private def ratingProgFrag(r: RatingProg) =
-    ratingTag(r.after.value, ratingProgress(r.diff))
+  private def ratingProgFrag(r: RatingProg)(implicit ctx: Context) =
+    ctx.pref.showRatings option ratingTag(r.after.value, ratingProgress(r.diff))
 
   private def scoreStr(tag: String, p: Int, name: lila.i18n.I18nKey)(implicit ctx: Context) =
     if (p == 0) ""

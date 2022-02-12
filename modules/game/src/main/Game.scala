@@ -552,19 +552,15 @@ case class Game(
 
   def unplayed = !bothPlayersHaveMoved && (createdAt isBefore Game.unplayedDate)
 
-  def abandoned =
-    (status <= Status.Started) && {
-      movedAt isBefore {
-        if (hasAi && !hasCorrespondenceClock) Game.aiAbandonedDate
-        else Game.abandonedDate
-      }
-    }
+  def abandoned = (status <= Status.Started) && (movedAt isBefore Game.abandonedDate)
 
   def forecastable = started && playable && isCorrespondence && !hasAi
 
   def hasBookmarks = bookmarks > 0
 
   def showBookmarks = hasBookmarks ?? bookmarks.toString
+
+  def incBookmarks(value: Int) = copy(bookmarks = bookmarks + value)
 
   def userIds = playerMaps(_.userId)
 
@@ -648,7 +644,8 @@ object Game {
 
   val syntheticId = "synthetic"
 
-  val maxPlayingRealtime = 100 // plus 200 correspondence games
+  val maxPlaying         = 200 // including correspondence
+  val maxPlayingRealtime = 100
 
   val maxPlies = 600 // unlimited can cause StackOverflowError
 
@@ -711,9 +708,6 @@ object Game {
 
   val abandonedDays = 21
   def abandonedDate = DateTime.now minusDays abandonedDays
-
-  val aiAbandonedHours = 6
-  def aiAbandonedDate  = DateTime.now minusHours aiAbandonedHours
 
   def takeGameId(fullId: String)   = fullId take gameIdSize
   def takePlayerId(fullId: String) = fullId drop gameIdSize

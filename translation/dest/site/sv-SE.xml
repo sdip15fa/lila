@@ -47,6 +47,8 @@
   <string name="blackResigned">Svart har gett upp</string>
   <string name="whiteLeftTheGame">Vit har lämnat partiet</string>
   <string name="blackLeftTheGame">Svart har lämnat partiet</string>
+  <string name="whiteDidntMove">Vit flyttade inte</string>
+  <string name="blackDidntMove">Vit flyttade inte</string>
   <string name="requestAComputerAnalysis">Begär datoranalys</string>
   <string name="computerAnalysis">Datoranalys</string>
   <string name="computerAnalysisAvailable">Datoranalys tillgänglig</string>
@@ -85,6 +87,7 @@
     <item quantity="one">Matt på %s halvdrag</item>
     <item quantity="other">Matt på %s halvdrag</item>
   </plurals>
+  <string name="dtzWithRounding">DTZ50\" med avrundning, baserat på antalet halvdrag till nästa slag eller bondedrag</string>
   <string name="noGameFound">Inget parti hittades</string>
   <string name="maybeIncludeMoreGamesFromThePreferencesMenu">Överväg att ändra inställningarna för att inkludera fler partier.</string>
   <string name="openingExplorer">Öppningsbok</string>
@@ -92,6 +95,9 @@
   <string name="xOpeningExplorer">%s öppningsutforskare</string>
   <string name="winPreventedBy50MoveRule">Vinst förhindrad genom 50-dragsregeln</string>
   <string name="lossSavedBy50MoveRule">Förlust förhindrad genom 50-dragsregeln</string>
+  <string name="winOr50MovesByPriorMistake">Vinst eller 50 drag på grund av tidigare misstag</string>
+  <string name="lossOr50MovesByPriorMistake">Förlust eller 50 drag på grund av tidigare misstag</string>
+  <string name="unknownDueToRounding">Vinst/förlust är endast garanterad om den rekommenderade öppningsboksvarianten har följts sedan senaste slag eller bondedrag, på grund av möjlig avrundning av DTZ värde i Syzygyöppningsböcker.</string>
   <string name="allSet">Klart!</string>
   <string name="importPgn">Importera PGN</string>
   <string name="delete">Ta bort</string>
@@ -363,6 +369,8 @@
   <string name="follow">Följ</string>
   <string name="following">Följer</string>
   <string name="unfollow">Sluta följa</string>
+  <string name="followX">Följ %s</string>
+  <string name="unfollowX">Sluta följa %s</string>
   <string name="block">Blockera</string>
   <string name="blocked">Blockerad</string>
   <string name="unblock">Avblockera</string>
@@ -548,6 +556,14 @@
   <string name="tools">Verktyg</string>
   <string name="increment">Tidstillägg</string>
   <string name="error.required">Detta fält är obligatoriskt</string>
+  <string name="error.email">Den här e-postadressen är ogiltig</string>
+  <string name="error.email_acceptable">Oacceptabel e-postadress. Var vänlig dubbelkolla den och försök igen.</string>
+  <string name="error.email_unique">E-postadressen är ogiltig eller upptagen</string>
+  <string name="error.email_different">Detta är redan din e-postadress</string>
+  <string name="error.minLength">Måste vara minst %s tecken långt</string>
+  <string name="error.maxLength">Får vara högst %s tecken lång</string>
+  <string name="error.min">Måste vara minst %s</string>
+  <string name="error.max">Måste vara högst %s</string>
   <string name="ifRatingIsPlusMinusX">Om rating är ± %s</string>
   <string name="onlyExistingConversations">Endast befintliga konversationer</string>
   <string name="onlyFriends">Bara vänner</string>
@@ -842,6 +858,7 @@ Lämna tomt för att starta spel från den normala startpositionen.</string>
   <string name="simulDescription">Simultan-beskrivning</string>
   <string name="simulDescriptionHelp">Något du vill berätta för deltagarna?</string>
   <string name="markdownAvailable">%s är tillgängligt för mer avancerad syntax.</string>
+  <string name="embedsAvailable">Klistra in en spel-länk eller en studiekapitel-länk för att infoga den.</string>
   <string name="inYourLocalTimezone">I din egen lokala tidszon</string>
   <string name="tournChat">Turneringschatt</string>
   <string name="noChat">Ingen chatt</string>
@@ -862,4 +879,9 @@ Lämna tomt för att starta spel från den normala startpositionen.</string>
   <string name="emailAssociatedToaccount">E-postadress kopplad till kontot</string>
   <string name="sentEmailWithLink">Vi har skickat ett e-postmeddelande med en länk.</string>
   <string name="tournamentEntryCode">Inträdeskod till turnering</string>
+  <string name="hangOn">Var god vänta!</string>
+  <string name="gameInProgress">Du har ett pågående parti med %s.</string>
+  <string name="abortTheGame">Avbryt partiet</string>
+  <string name="resignTheGame">Ge upp partiet</string>
+  <string name="youCantStartNewGame">Du kan inte starta ett nytt parti förräm detta är klart.</string>
 </resources>

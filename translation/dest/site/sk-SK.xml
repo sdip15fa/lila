@@ -17,6 +17,8 @@
   <string name="stalemate">Pat</string>
   <string name="white">Biely</string>
   <string name="black">Čierny</string>
+  <string name="asWhite">ako biely</string>
+  <string name="asBlack">ako čierny</string>
   <string name="randomColor">Náhodná farba figúr</string>
   <string name="createAGame">Vytvoriť partiu</string>
   <string name="whiteIsVictorious">Biely zvíťazil</string>
@@ -91,6 +93,7 @@
     <item quantity="many">Mat v %s. polťahu</item>
     <item quantity="other">Mat v %s. polťahu</item>
   </plurals>
+  <string name="dtzWithRounding">DTZ50\" so zaokrúhlením, vychádzajúci s počtu polťahov až do najbližšieho brania alebo ťahu pešiakom</string>
   <string name="noGameFound">Nenašla sa žiadna partia</string>
   <string name="maybeIncludeMoreGamesFromThePreferencesMenu">Možno vyberte viac partií z menu preferencií?</string>
   <string name="openingExplorer">Prieskumník otvorení</string>
@@ -98,6 +101,9 @@
   <string name="xOpeningExplorer">%s prieskumník otvorení</string>
   <string name="winPreventedBy50MoveRule">Výhre zabránilo pravidlo 50-tich ťahov</string>
   <string name="lossSavedBy50MoveRule">Od prehry zachránilo pravidlo 50-tich ťahov</string>
+  <string name="winOr50MovesByPriorMistake">Výhra alebo 50 ťahov na základe predchádzajúcej chyby</string>
+  <string name="lossOr50MovesByPriorMistake">Prehra alebo 50 ťahov v dôsledku predchádzajúcej chyby</string>
+  <string name="unknownDueToRounding">Výhra/prehra je garantovaná iba ak bol od posledného brania alebo ťahu pešiakom dodržaný odporúčaný variant databázy, kvôli možnému zaokrúhleniu hodnoty DTZ v Syzygy databáze.</string>
   <string name="allSet">Všetko nastavené!</string>
   <string name="importPgn">Importovať PGN</string>
   <string name="delete">Vymazať</string>
@@ -147,6 +153,8 @@
     <item quantity="many">%s pripojených hráčov</item>
     <item quantity="other">%s pripojených hráčov</item>
   </plurals>
+  <string name="drawByMutualAgreement">Remíza po vzájomnej dohode</string>
+  <string name="fiftyMovesWithoutProgress">Päťdesiat ťahov bez posunu vpred</string>
   <string name="currentGames">Práve prebiehajúce partie</string>
   <plurals name="nbGames">
     <item quantity="one">%s partia</item>
@@ -254,7 +262,7 @@
   <string name="mode">Režim hry</string>
   <string name="casual">Priateľská</string>
   <string name="rated">Hodnotená</string>
-  <string name="casualTournament">Nehodnotený</string>
+  <string name="casualTournament">Priateľská</string>
   <string name="ratedTournament">Hodnotený</string>
   <string name="thisGameIsRated">Táto hra je hodnotená</string>
   <string name="rematch">Odveta</string>
@@ -388,6 +396,7 @@
   <string name="leaderboard">Rebríček</string>
   <string name="pasteTheFenStringHere">Sem vložte FEN reťazec</string>
   <string name="pasteThePgnStringHere">Sem vložte PGN reťazec</string>
+  <string name="orUploadPgnFile">Alebo nahrajte súbor PGN</string>
   <string name="fromPosition">Z pozície</string>
   <string name="continueFromHere">Pokračujte odtiaľto</string>
   <string name="toStudy">Štúdia</string>
@@ -714,6 +723,7 @@
   <string name="downloadImported">Stiahnuť importované</string>
   <string name="crosstable">Tabuľka</string>
   <string name="youCanAlsoScrollOverTheBoardToMoveInTheGame">K pohybu v partii môžete tiež použiť scrollovacie koliečko myši nad šachovnicou.</string>
+  <string name="scrollOverComputerVariationsToPreviewThem">Prejdite kurzorom ponad počítačové varianty pre zobrazenie ich náhľadu.</string>
   <string name="analysisShapesHowTo">Stlačte shift+ľavé tlačidlo na myši alebo pravé tlačidlo na myši na kreslenie kruhov a šípok na šachovnici.</string>
   <string name="letOtherPlayersMessageYou">Povoliť ostatným hráčom aby Vám napísali správu</string>
   <string name="receiveForumNotifications">Dostávať upozornenia keď ťa niekto spomenie na fóre</string>
@@ -883,26 +893,52 @@
   <string name="youCannotPostYetPlaySomeGames">Nemôžeš prispievať do fóra. Zahraj si nejaké hry!</string>
   <string name="subscribe">Prihlásiť sa k odberu</string>
   <string name="unsubscribe">Odhlásiť sa z odberu</string>
+  <string name="mentionedYouInX">Vás spomenul(a) v \"%1$s\".</string>
   <string name="xMentionedYouInY">%1$s ťa spomenul v \"%2$s\".</string>
+  <string name="invitedYouToX">Vás pozval(a) k \"%1$s\".</string>
+  <string name="xInvitedYouToY">%1$s Vás pozval(a) k \"%2$s\".</string>
   <string name="youAreNowPartOfTeam">Teraz si členom tímu.</string>
+  <string name="youHaveJoinedTeamX">Pripojili ste sa k družstvu %1$s.</string>
   <string name="someoneYouReportedWasBanned">Hráč, ktorého ste nahlásili bol zabanovaný</string>
   <string name="congratsYouWon">Gratulujeme, vyhrali ste!</string>
   <string name="gameVsX">v partii proti %1$s</string>
   <string name="resVsX">%1$s proti %2$s</string>
+  <string name="someoneReviewedYourCoachProfile">Niekto napísal recenziu Vášho profilu trénera.</string>
+  <string name="newPendingReview">Nová čakajúca recenzia</string>
+  <string name="lostAgainstTOSViolator">Prehrali ste s niekým kto porušil pravidlá stránky Lichess</string>
+  <string name="refundXpointsTimeControlY">Náhrada: %1$s %2$s ratingových bodov.</string>
   <string name="timeAlmostUp">Čas čoskoro vyprší!</string>
   <string name="clickToRevealEmailAddress">[Kliknite pre zobrazenie e-mailovej adresy]</string>
   <string name="download">Stiahnuť</string>
   <string name="welcome">Vitajte!</string>
   <string name="lichessPatronInfo">Lichess je bezplatný a úplne slobodný/nezávislý softvér s otvoreným zdrojovým kódom. Všetky prevádzkové náklady, vývoj a obsah sú financované výlučne z darov používateľov.</string>
+  <string name="coachManager">Nastavenia trénera</string>
   <string name="streamerManager">Správca streamov</string>
   <string name="cancelTournament">Zrušiť turnaj</string>
   <string name="tournDescription">Popis turnaja</string>
+  <string name="tournDescriptionHelp">Je niečo čo by ste chceli povedať účastníkom turnaja? Snažte sa byť stručný! Môžete použiť markdown značky: [name](https://url)</string>
+  <string name="ratedFormHelp">Partie sú hodnotené
+a ovplyvnia rating hráčov</string>
   <string name="onlyMembersOfTeam">Iba členovia tímu</string>
   <string name="noRestriction">Bez obmedzenia</string>
   <string name="minimumRatedGames">Minimum hodnotených hier</string>
+  <string name="minimumRating">Minimálny rating</string>
+  <string name="maximumWeeklyRating">Maximálny týždenný rating</string>
+  <string name="onlyTitled">Iba hráči s titulom</string>
+  <string name="onlyTitledHelp">Požadovať oficiálny šachový titul na prihlásenie sa do turnaja</string>
+  <string name="positionInputHelp">Vložte platný FEN pre začatie každej partie z konkrétnej pozície!
+Funguje len pre štandardné partie, nie pre varianty.
+Môžete použiť %s na vygenerovanie FEN pozície a potom ju sem vložiť.
+Nechajte prázdne pre začatie partií zo základnej pozície!</string>
+  <string name="cancelSimul">Zrušiť simultánku</string>
+  <string name="simulHostcolor">Farba figúr hostiteľa pre každú partiu</string>
+  <string name="estimatedStart">Predpokladaný čas začiatku</string>
+  <string name="simulDescription">Popis simultánky</string>
+  <string name="simulDescriptionHelp">Chcete účastníkom niečo povedať?</string>
   <string name="inYourLocalTimezone">Vo vašom miestnom časovom pásme</string>
   <string name="tournChat">Turnajová diskusia</string>
   <string name="noChat">Vypnutý chat</string>
+  <string name="onlyTeamLeaders">Iba vedúci družstiev</string>
   <string name="onlyTeamMembers">Iba členovia tímu</string>
   <string name="navigateMoveTree">Navigovať na všetky ťahy vo forme stromu</string>
   <string name="mouseTricks">Finty s myšou</string>
@@ -924,4 +960,8 @@
   <string name="abortTheGame">Zrušiť partiu</string>
   <string name="resignTheGame">Vzdať partiu</string>
   <string name="youCantStartNewGame">Kým neukončíte túto partiu, nemôžete začať novú.</string>
+  <string name="since">Od</string>
+  <string name="until">Do</string>
+  <string name="lichessDbExplanation">Hodnotené partie vybraté spomedzi všetkých Lichess hráčov</string>
+  <string name="switchSides">Vymeniť strany</string>
 </resources>

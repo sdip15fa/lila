@@ -46,6 +46,7 @@
   <string name="youAreNowASpectator">Od teraz ste divákom</string>
   <string name="pgnTags">PGN značka</string>
   <string name="like">Páči sa mi</string>
+  <string name="unlike">Nepáči sa mi</string>
   <string name="newTag">Nová značka</string>
   <string name="commentThisPosition">Komentovať túto pozíciu</string>
   <string name="commentThisMove">Komentovať tento ťah</string>
@@ -159,4 +160,12 @@
   <string name="nextChapter">Ďalšia kapitola</string>
   <string name="prevChapter">Predchádzajúca kapitola</string>
   <string name="studyActions">Úkony pri štúdii</string>
+  <string name="topics" comment="topics&#10;&#10;On the page https://lichess.org/study/topic">Témy</string>
+  <string name="myTopics" comment="myTopics&#10;&#10;On the page https://lichess.org/study/topic">Moje témy</string>
+  <string name="popularTopics" comment="popularTopics&#10;&#10;On the page https://lichess.org/study/topic">Populárne témy</string>
+  <string name="manageTopics" comment="manageTopics&#10;&#10;On the page https://lichess.org/study/topic">Spravovať témy</string>
+  <string name="back" comment="back&#10;&#10;At the bottom of the study tutorial screen, a button for returning to the start of the chapter.">Späť</string>
+  <string name="playAgain">Hrať znova</string>
+  <string name="whatWouldYouPlay">Čo by ste hrali v tejto pozícii?</string>
+  <string name="youCompletedThisLesson">Gratulujeme! Túto lekciu ste ukončili.</string>
 </resources>

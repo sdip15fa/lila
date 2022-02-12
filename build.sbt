@@ -61,7 +61,7 @@ lazy val i18n = smallModule("i18n",
     MessageCompiler(
       sourceDir = new File("translation/source"),
       destDir = new File("translation/dest"),
-      dbs = "site arena emails learn activity coordinates study class contact patron coach broadcast streamer tfa settings preferences team perfStat search tourname faq lag swiss puzzle puzzleTheme challenge storm ublog".split(' ').toList,
+      dbs = "site arena emails learn activity coordinates study class contact patron coach broadcast streamer tfa settings preferences team perfStat search tourname faq lag swiss puzzle puzzleTheme challenge storm ublog insight".split(' ').toList,
       compileTo = (Compile / sourceManaged).value
     )
   }.taskValue
@@ -125,7 +125,7 @@ lazy val evaluation = module("evaluation",
 lazy val common = smallModule("common",
   Seq(),
   Seq(
-    scalalib, scalaUri, chess, autoconfig,
+    scalalib, galimatias, chess, autoconfig,
     kamon.core, scalatags, jodaForms, scaffeine, specs2, apacheText
   ) ++ reactivemongo.bundle ++ flexmark.bundle
 )
@@ -187,7 +187,7 @@ lazy val mod = module("mod",
 
 lazy val user = smallModule("user",
   Seq(common, memo, db, hub, rating, socket),
-  Seq(hasher, specs2, autoconfig, scalaUri) ++ playWs.bundle ++ reactivemongo.bundle ++ macwire.bundle
+  Seq(hasher, specs2, autoconfig, galimatias) ++ playWs.bundle ++ reactivemongo.bundle ++ macwire.bundle
 )
 
 lazy val game = module("game",
@@ -271,7 +271,7 @@ lazy val fishnet = module("fishnet",
 )
 
 lazy val irwin = module("irwin",
-  Seq(common, db, user, game, tournament, mod),
+  Seq(common, db, user, game, tournament, mod, insight),
   reactivemongo.bundle
 )
 
@@ -302,7 +302,7 @@ lazy val study = module("study",
 
 lazy val relay = module("relay",
   Seq(common, study),
-  Seq(scalaUri) ++ reactivemongo.bundle
+  Seq(galimatias) ++ reactivemongo.bundle
 )
 
 lazy val studySearch = module("studySearch",
@@ -391,7 +391,7 @@ lazy val clas = module("clas",
 )
 
 lazy val bookmark = module("bookmark",
-  Seq(common, memo, db, hub, user, game),
+  Seq(common, memo, db, hub, user, game, round),
   reactivemongo.bundle
 )
 

@@ -13,6 +13,8 @@ case class ContentSecurityPolicy(
 
   def withNonce(nonce: Nonce) = copy(scriptSrc = nonce.scriptSrc :: scriptSrc)
 
+  def withLegacyCompatibility = copy(scriptSrc = "'unsafe-inline'" :: scriptSrc)
+
   def withWebAssembly =
     copy(
       scriptSrc = "'unsafe-eval'" :: scriptSrc
@@ -70,6 +72,8 @@ case class ContentSecurityPolicy(
   def withAnyWs = copy(connectSrc = "ws:" :: "wss:" :: connectSrc)
 
   def withWikiBooks = copy(connectSrc = "en.wikibooks.org" :: connectSrc)
+
+  def withLilaHttp = copy(connectSrc = "http.lichess.org" :: connectSrc)
 
   override def toString: String =
     List(

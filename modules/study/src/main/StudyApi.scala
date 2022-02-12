@@ -119,19 +119,24 @@ final class StudyApi(
 
   def members(id: Study.Id): Fu[Option[StudyMembers]] = studyRepo membersById id
 
-  def importGame(data: StudyMaker.ImportGame, user: User): Fu[Option[Study.WithChapter]] =
+  def importGame(
+      data: StudyMaker.ImportGame,
+      user: User,
+      withRatings: Boolean
+  ): Fu[Option[Study.WithChapter]] =
     (data.form.as match {
-      case StudyForm.importGame.AsNewStudy => create(data, user)
+      case StudyForm.importGame.AsNewStudy => create(data, user, withRatings)
       case StudyForm.importGame.AsChapterOf(studyId) =>
         byId(studyId) flatMap {
           case Some(study) if study.canContribute(user.id) =>
             addChapter(
               studyId = study.id,
               data = data.form.toChapterData,
-              sticky = study.settings.sticky
+              sticky = study.settings.sticky,
+              withRatings
             )(Who(user.id, Sri(""))) >> byIdWithLastChapter(studyId)
           case _ => fuccess(none)
-        } orElse importGame(data.copy(form = data.form.copy(asStr = none)), user)
+        } orElse importGame(data.copy(form = data.form.copy(asStr = none)), user, withRatings)
     }) addEffect {
       _ ?? { sc =>
         Bus.publish(actorApi.StartStudy(sc.study.id), "startStudy")
@@ -141,9 +146,10 @@ final class StudyApi(
   def create(
       data: StudyMaker.ImportGame,
       user: User,
+      withRatings: Boolean,
       transform: Study => Study = identity
   ): Fu[Option[Study.WithChapter]] =
-    studyMaker(data, user) map { sc =>
+    studyMaker(data, user, withRatings) map { sc =>
       sc.copy(study = transform(sc.study))
     } flatMap { sc =>
       studyRepo.insert(sc.study) >>
@@ -582,11 +588,13 @@ final class StudyApi(
       }
     }
 
-  def addChapter(studyId: Study.Id, data: ChapterMaker.Data, sticky: Boolean)(who: Who): Funit =
+  def addChapter(studyId: Study.Id, data: ChapterMaker.Data, sticky: Boolean, withRatings: Boolean)(
+      who: Who
+  ): Funit =
     data.manyGames match {
       case Some(datas) =>
         lila.common.Future.applySequentially(datas) { data =>
-          addChapter(studyId, data, sticky)(who)
+          addChapter(studyId, data, sticky, withRatings)(who)
         }
       case _ =>
         sequenceStudy(studyId) { study =>
@@ -600,7 +608,7 @@ final class StudyApi(
                   }
                 } >>
                   chapterRepo.nextOrderByStudy(study.id) flatMap { order =>
-                    chapterMaker(study, data, order, who.u) flatMap { chapter =>
+                    chapterMaker(study, data, order, who.u, withRatings) flatMap { chapter =>
                       doAddChapter(study, chapter, sticky, who)
                     } addFailureEffect {
                       case ChapterMaker.ValidationException(error) =>
@@ -619,9 +627,11 @@ final class StudyApi(
       studyRepo.updateSomeFields(study) >>- indexStudy(study)
     }
 
-  def importPgns(studyId: Study.Id, datas: List[ChapterMaker.Data], sticky: Boolean)(who: Who) =
+  def importPgns(studyId: Study.Id, datas: List[ChapterMaker.Data], sticky: Boolean, withRatings: Boolean)(
+      who: Who
+  ) =
     lila.common.Future.applySequentially(datas) { data =>
-      addChapter(studyId, data, sticky)(who)
+      addChapter(studyId, data, sticky, withRatings)(who)
     }
 
   def doAddChapter(study: Study, chapter: Chapter, sticky: Boolean, who: Who) =
@@ -726,7 +736,13 @@ final class StudyApi(
             chapterRepo.orderedMetadataByStudy(studyId).flatMap { chaps =>
               // deleting the only chapter? Automatically create an empty one
               if (chaps.sizeIs < 2) {
-                chapterMaker(study, ChapterMaker.Data(Chapter.Name("Chapter 1")), 1, who.u) flatMap { c =>
+                chapterMaker(
+                  study,
+                  ChapterMaker.Data(Chapter.Name("Chapter 1")),
+                  1,
+                  who.u,
+                  withRatings = true
+                ) flatMap { c =>
                   doAddChapter(study, c, sticky = true, who) >> doSetChapter(study, c.id, who)
                 }
               } // deleting the current chapter? Automatically move to another one
@@ -836,10 +852,15 @@ final class StudyApi(
       }
     }
 
-  def analysisRequest(studyId: Study.Id, chapterId: Chapter.Id, userId: User.ID): Funit =
+  def analysisRequest(
+      studyId: Study.Id,
+      chapterId: Chapter.Id,
+      userId: User.ID,
+      unlimited: Boolean = false
+  ): Funit =
     sequenceStudyWithChapter(studyId, chapterId) { case Study.WithChapter(study, chapter) =>
       Contribute(userId, study) {
-        serverEvalRequester(study, chapter, userId)
+        serverEvalRequester(study, chapter, userId, unlimited)
       }
     }
 

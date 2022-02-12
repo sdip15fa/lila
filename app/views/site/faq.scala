@@ -43,7 +43,7 @@ object faq {
           ),
           p(
             whyIsLilaCalledLila(
-              a(href := "https://github.com/ornicar/lila")("lila"),
+              a(href := "https://github.com/lichess-org/lila")("lila"),
               a(href := "https://www.scala-lang.org/")("Scala")
             )
           )
@@ -190,7 +190,7 @@ object faq {
           titlesAvailableOnLichess.txt(),
           p(
             lichessRecognizeAllOTBtitles(
-              a(href := "https://github.com/ornicar/lila/wiki/Handling-title-verification-requests")(
+              a(href := "https://github.com/lichess-org/lila/wiki/Handling-title-verification-requests")(
                 asWellAsManyNMtitles()
               )
             )
@@ -223,7 +223,7 @@ object faq {
           whatUsernameCanIchoose.txt(),
           p(
             usernamesNotOffensive(
-              a(href := "https://github.com/ornicar/lila/wiki/Username-policy")(guidelines())
+              a(href := "https://github.com/lichess-org/lila/wiki/Username-policy")(guidelines())
             )
           )
         ),
@@ -342,6 +342,19 @@ object faq {
           p(img(src := assetUrl("images/connection-info.png"), alt := viewSiteInformationPopUp.txt())),
           p(
             lichessCanOptionnalySendPopUps()
+          )
+        ),
+        question(
+          "make-a-bot",
+          "Make a Lichess bot?",
+          p(
+            "To learn how to create a ",
+            a(href := "https://lichess.org/blog/WvDNticAAMu_mHKP/welcome-lichess-bots")("Lichess bot"),
+            ", please read ",
+            a(href := "https://lichess.org/@/thibault/blog/how-to-create-a-lichess-bot/FuKyvDuB")(
+              "this blog post"
+            ),
+            "."
           )
         )
       )

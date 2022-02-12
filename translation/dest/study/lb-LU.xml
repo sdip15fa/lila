@@ -41,6 +41,7 @@
   <string name="youAreNowASpectator">Du bass elo en Zuschauer</string>
   <string name="pgnTags">PGN Tags</string>
   <string name="like">Gefällt mir</string>
+  <string name="unlike">Gefällt mer net méi</string>
   <string name="newTag">Néien Tag</string>
   <string name="commentThisPosition">Kommentéier des Positioun</string>
   <string name="commentThisMove">Kommentéier dësen Zuch</string>
@@ -58,11 +59,11 @@
   <string name="last">Lescht Säit</string>
   <string name="shareAndExport">Deelen &amp; exportéieren</string>
   <string name="cloneStudy">Klonen</string>
-  <string name="studyPgn">PGN studéieren</string>
+  <string name="studyPgn">Etüden PGN</string>
   <string name="downloadAllGames">All Partien eroflueden</string>
   <string name="chapterPgn">Kapitel PGN</string>
   <string name="downloadGame">Partie eroflueden</string>
-  <string name="studyUrl">Etüd URL</string>
+  <string name="studyUrl">Etüden URL</string>
   <string name="currentChapterUrl">Aktuellt Kapitel URL</string>
   <string name="youCanPasteThisInTheForumToEmbed">Zum Anbetten an een Forum oder Blog afügen</string>
   <string name="startAtInitialPosition">Mat Startpositioun ufänken</string>
@@ -155,4 +156,12 @@
   <string name="nextChapter">Nächst Kapitel</string>
   <string name="prevChapter">Kapitel virdrun</string>
   <string name="studyActions">Etüden-Aktiounen</string>
+  <string name="topics" comment="topics&#10;&#10;On the page https://lichess.org/study/topic">Themen</string>
+  <string name="myTopics" comment="myTopics&#10;&#10;On the page https://lichess.org/study/topic">Meng Themen</string>
+  <string name="popularTopics" comment="popularTopics&#10;&#10;On the page https://lichess.org/study/topic">Beléift Themen</string>
+  <string name="manageTopics" comment="manageTopics&#10;&#10;On the page https://lichess.org/study/topic">Themen managen</string>
+  <string name="back" comment="back&#10;&#10;At the bottom of the study tutorial screen, a button for returning to the start of the chapter.">Zeréck</string>
+  <string name="playAgain">Nach eng Kéier spillen</string>
+  <string name="whatWouldYouPlay">Wat géifs du an dëser Positioun spillen?</string>
+  <string name="youCompletedThisLesson">Gudd gemaach! Du hues dës Übung ofgeschloss.</string>
 </resources>

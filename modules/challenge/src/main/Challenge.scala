@@ -105,6 +105,8 @@ case class Challenge(
     declineReason = reason.some
   )
 
+  def cancel = copy(status = Status.Canceled)
+
   def isBoardCompatible: Boolean = speed >= Speed.Blitz
   def isBotCompatible: Boolean   = speed >= Speed.Bullet
 }
@@ -167,6 +169,8 @@ object Challenge {
 
   sealed trait TimeControl
   object TimeControl {
+    def make(clock: Option[chess.Clock.Config], days: Option[Int]) =
+      clock.map(Clock).orElse(days map Correspondence).getOrElse(Unlimited)
     case object Unlimited                extends TimeControl
     case class Correspondence(days: Int) extends TimeControl
     case class Clock(config: chess.Clock.Config) extends TimeControl {

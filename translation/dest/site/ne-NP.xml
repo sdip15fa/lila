@@ -24,6 +24,7 @@
   <string name="youPlayTheWhitePieces">तपाईं सेतो खेल्नुहुनेछ</string>
   <string name="youPlayTheBlackPieces">तपाईं कालो खेल्नुहुनेछ</string>
   <string name="itsYourTurn">तपाईंको पालो!</string>
+  <string name="cheatDetected">बेइमानी पत्ता पर्यो</string>
   <string name="kingInTheCenter">राजा बिचमा</string>
   <string name="threeChecks">तिनवटा चेकहरु</string>
   <string name="raceFinished">दौड सकियो</string>
@@ -49,6 +50,7 @@
   <string name="requestAComputerAnalysis">कम्प्युटर विश्लेषण आग्रह गर्नुहोस्</string>
   <string name="computerAnalysis">कम्प्युटर विश्लेषण</string>
   <string name="computerAnalysisAvailable">कम्प्युटर विश्लेषण उपलब्ध छ</string>
+  <string name="computerAnalysisDisabled">कम्प्युटर विश्लेषण बन्द छ</string>
   <string name="analysis">विश्लेषण बोर्ड</string>
   <string name="depthX">गहिराइ %s</string>
   <string name="usingServerAnalysis">सर्भरको विश्लेषण प्रयोग गरिदैं छ</string>
@@ -257,6 +259,7 @@
     <item quantity="one">%s सेकेण्ड दिनु</item>
     <item quantity="other">%s सेकेण्ड दिनु</item>
   </plurals>
+  <string name="thisAccountViolatedTos">यस खाताले Lichess Terms of Service को उल्लङ्घन गरेको छ</string>
   <string name="openingExplorerAndTablebase">शुरुका चाल अन्वेषक &amp; टेबलबेस</string>
   <string name="takeback">चाल फिर्ता</string>
   <string name="proposeATakeback">चाल फिर्ता लिने प्रस्ताव गरौं</string>
@@ -419,6 +422,7 @@
   <string name="firstName">शुभनाम</string>
   <string name="lastName">थर</string>
   <string name="biography">जीवनी</string>
+  <string name="countryOrFlag" comment="countryOrFlag&#10;Appears when you edit your profile. Lets a player add a country/flag (not all flags are for countries) to their profile">देश अथवा झण्डा</string>
   <string name="thankYou">धन्यवाद!</string>
   <string name="socialMediaLinks">सामाजिक सञ्जाल लिङ्क</string>
   <string name="inlineNotation">पङ्तिमा नोटेशन</string>
@@ -475,6 +479,7 @@
   <string name="clockInitialTime">घडीको शुरु समय</string>
   <string name="clockIncrement">हरेक चालमा थप हुने समय</string>
   <string name="privacy">गोपनियता</string>
+  <string name="privacyPolicy">गोप्यता नीति</string>
   <string name="letOtherPlayersFollowYou">अरु खेलाडीलाई पछ्याउन दिने</string>
   <string name="letOtherPlayersChallengeYou">अरु खेलाडी लाई खेलको निम्तो दिन दिने</string>
   <string name="letOtherPlayersInviteYouToStudy">अरु खेलाडीलाई पाठ मा आमन्त्रण गर्न दिने</string>
@@ -754,5 +759,9 @@
   <string name="inTheFAQ">प्रायः सोधिने प्रश्नहरूमा</string>
   <string name="toReportSomeoneForCheatingOrBadBehavior">चोरी वा खराब ब्यहोराको उजुरी गर्नुपरेमा %1$s</string>
   <string name="useTheReportForm">रिपोर्ट फारम प्रयोग गर्नुहोस्</string>
+  <string name="toRequestSupport">मद्दतका लागि अनुरोध गर्न, %1$s</string>
+  <string name="tryTheContactPage">सम्पर्क पेजबाट प्रयास गर्नुहोस्</string>
+  <string name="thisTopicIsArchived">यो विषय सङ्गृहीत छ र यसलाई जवाफ दिन सकिँदैन।</string>
+  <string name="teamNamedX">%1$s टोली</string>
   <string name="timeAlmostUp">समय सक्किन लाग्यो!</string>
 </resources>

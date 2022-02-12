@@ -10,9 +10,10 @@ import views._
 import lila.api.Context
 import lila.app._
 import lila.common.config.MaxPerSecond
+import lila.common.HTTPRequest
+import lila.memo.RateLimit
 import lila.team.{ Requesting, Team => TeamModel }
 import lila.user.{ User => UserModel, Holder }
-import lila.memo.RateLimit
 
 final class Team(
     env: Env,
@@ -76,7 +77,7 @@ final class Team(
   private def canHaveChat(team: TeamModel, info: lila.app.mashup.TeamInfo, requestModView: Boolean = false)(
       implicit ctx: Context
   ): Boolean =
-    team.enabled && !team.isChatFor(_.NONE) && ctx.noKid && {
+    team.enabled && !team.isChatFor(_.NONE) && ctx.noKid && HTTPRequest.isHuman(ctx.req) && {
       (team.isChatFor(_.LEADERS) && ctx.userId.exists(team.leaders)) ||
       (team.isChatFor(_.MEMBERS) && info.mine) ||
       (isGranted(_.ChatTimeout) && requestModView)
@@ -161,11 +162,8 @@ final class Team(
     }
   def kickUser(teamId: String, userId: String) =
     Scoped(_.Team.Write) { _ => me =>
-      api teamEnabled teamId flatMap {
-        _ ?? { team =>
-          if (team leaders me.id) api.kick(team, userId, me) inject jsonOkResult
-          else Forbidden(jsonError("Not your team")).fuccess
-        }
+      WithOwnedTeamEnabledApi(teamId, me) {
+        api.kick(_, userId, me) inject Api.Done
       }
     }
 
@@ -538,6 +536,25 @@ final class Team(
       }
     }
 
+  def apiRequests(teamId: String) =
+    Scoped(_.Team.Read) { _ => me =>
+      WithOwnedTeamEnabledApi(teamId, me) { team =>
+        api.requestsWithUsers(team) map { reqs =>
+          Api.Data(JsArray(reqs map env.team.jsonView.requestWithUserWrites.writes))
+        }
+      }
+    }
+
+  def apiRequestProcess(teamId: String, userId: String, decision: String) =
+    Scoped(_.Team.Write) { req => me =>
+      WithOwnedTeamEnabledApi(teamId, me) { team =>
+        api request lila.team.Request.makeId(team.id, UserModel normalize userId) flatMap {
+          case None      => fuccess(Api.ClientError("No such team join request"))
+          case Some(req) => api.processRequest(team, req, decision) inject Api.Done
+        }
+      }
+    }
+
   private def doPmAll(team: TeamModel, me: UserModel)(implicit
       req: Request[_]
   ): Either[Form[_], Fu[RateLimit.Result]] =
@@ -594,4 +611,13 @@ You received this because you are subscribed to messages of the team $url."""
       if (team.enabled || isGranted(_.ManageTeam)) f(team)
       else notFound
     }
+
+  private def WithOwnedTeamEnabledApi(teamId: String, me: UserModel)(
+      f: TeamModel => Fu[Api.ApiResult]
+  ): Fu[Result] =
+    api teamEnabled teamId flatMap {
+      case Some(team) if team leaders me.id => f(team)
+      case Some(_)                          => fuccess(Api.ClientError("Not your team"))
+      case None                             => fuccess(Api.NoData)
+    } map apiC.toHttp
 }

@@ -17,6 +17,8 @@
   <string name="stalemate">Pat</string>
   <string name="white">Beyaz</string>
   <string name="black">Siyah</string>
+  <string name="asWhite">beyazlarda</string>
+  <string name="asBlack">siyahlarda</string>
   <string name="randomColor">Rastgele renk</string>
   <string name="createAGame">Yeni bir oyun kur</string>
   <string name="whiteIsVictorious">Zafer Beyazın</string>
@@ -67,7 +69,7 @@
   <string name="deleteFromHere">Bu hamleden sonrasını sil</string>
   <string name="forceVariation">Varyant olarak göster</string>
   <string name="move">Hamle</string>
-  <string name="variantLoss">Kayıp devam yolu</string>
+  <string name="variantLoss">Varyant yenilgisi</string>
   <string name="variantWin">Kazanç devam yolu</string>
   <string name="insufficientMaterial">Yetersiz taş</string>
   <string name="pawnMove">Piyon hamlesi</string>
@@ -87,6 +89,7 @@
     <item quantity="one">%s yarım hamle sonra mat</item>
     <item quantity="other">%s yarım hamle sonra mat</item>
   </plurals>
+  <string name="dtzWithRounding">DTZ50\'\', bir sonraki yakalama veya piyon hamlesine kadar olan yarım hamle sayısına dayalı yuvarlama ile</string>
   <string name="noGameFound">Oyun bulunamadı</string>
   <string name="maybeIncludeMoreGamesFromThePreferencesMenu">Seçenekler menüsünden daha fazla oyun eklemeyi deneyebilirsiniz.</string>
   <string name="openingExplorer">Açılış kâşifi</string>
@@ -94,6 +97,7 @@
   <string name="xOpeningExplorer">%s açılış kâşifi</string>
   <string name="winPreventedBy50MoveRule">Galibiyet 50 hamle kuralı yüzünden engellendi</string>
   <string name="lossSavedBy50MoveRule">Mağlubiyet 50 hamle kuralı sayesinde kurtarıldı</string>
+  <string name="unknownDueToRounding">Kazanma/kaybetme, Syzygy tablo tabanlarında DTZ değerlerinin olası yuvarlanması nedeniyle, yalnızca son yakalama veya piyon hareketinden bu yana önerilen tablo tabanı çizgisi izlendiğinde garanti edilir.</string>
   <string name="allSet">Her şey tamam!</string>
   <string name="importPgn">PGN\'yi içe aktar</string>
   <string name="delete">Sil</string>
@@ -176,6 +180,10 @@
   <plurals name="nbHours">
     <item quantity="one">%s saat</item>
     <item quantity="other">%s saat</item>
+  </plurals>
+  <plurals name="nbMinutes">
+    <item quantity="one">%s dakika</item>
+    <item quantity="other">%s dakika</item>
   </plurals>
   <string name="time">Zaman</string>
   <string name="rating">Puan</string>
@@ -340,6 +348,7 @@
   <string name="leaderboard">Lider Tablosu</string>
   <string name="pasteTheFenStringHere">FEN kodunu buraya yapıştırın</string>
   <string name="pasteThePgnStringHere">PGN\'yi buraya yapıştırın</string>
+  <string name="orUploadPgnFile">Veya bir PGN dosyası yükle</string>
   <string name="fromPosition">Özel pozisyondan</string>
   <string name="continueFromHere">Bu pozisyondan devam et</string>
   <string name="toStudy">Çalışma oluştur</string>
@@ -448,6 +457,7 @@
   <string name="countryOrFlag" comment="countryOrFlag&#10;Appears when you edit your profile. Lets a player add a country/flag (not all flags are for countries) to their profile">Ülke veya Bayrak</string>
   <string name="thankYou">Teşekkürler!</string>
   <string name="socialMediaLinks">Sosyal medya bağlantıları</string>
+  <string name="oneUrlPerLine" comment="oneUrlPerLine&#10;&#10;Appears in the 'Social media links' section for when you edit your profile, to display URLs associated with you: https://lichess.org/account/profile">Satır başına bir bağlantı.</string>
   <string name="inlineNotation">Notasyonu aynı satırda göster</string>
   <string name="previouslyOnLichessTV">Lichess TV\'de bunlar da vardı;</string>
   <string name="onlinePlayers">Çevrimiçi oyuncular</string>
@@ -878,4 +888,8 @@ Başlangıç pozisyonundan oynamak için boş bırakınız.</string>
   <string name="abortTheGame">Maçı iptal et</string>
   <string name="resignTheGame">Maçı terk et</string>
   <string name="youCantStartNewGame">Mevcut oyun bitene kadar yeni bir oyuna başlayamazsın.</string>
+  <string name="since">Seçili tarihten beri</string>
+  <string name="until">Seçili tarihe kadar</string>
+  <string name="lichessDbExplanation">Tüm Lichess oyuncularının puanlı oyunlarından alınan örnekler</string>
+  <string name="switchSides">Renk değiştir</string>
 </resources>

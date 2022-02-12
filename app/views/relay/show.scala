@@ -39,15 +39,12 @@ object show {
                 name = trans.chatRoom.txt(),
                 timeout = c.timeout,
                 writeable = ctx.userId.??(rt.study.canChat),
-                public = false,
+                public = true,
                 resourceId = lila.chat.Chat.ResourceId(s"relay/${c.chat.id}"),
                 localMod = ctx.userId.??(rt.study.canContribute)
               )
             ),
-            "explorer" -> Json.obj(
-              "endpoint"          -> explorerEndpoint,
-              "tablebaseEndpoint" -> tablebaseEndpoint
-            ),
+            "explorer"      -> views.html.board.bits.explorerConfig,
             "socketUrl"     -> views.html.study.show.socketUrl(rt.study.id.value),
             "socketVersion" -> socketVersion.value
           )
@@ -55,7 +52,7 @@ object show {
       ),
       chessground = false,
       zoomable = true,
-      csp = defaultCsp.withWebAssembly.some,
+      csp = defaultCsp.withWebAssembly.withWikiBooks.some,
       openGraph = lila.app.ui
         .OpenGraph(
           title = rt.fullName,

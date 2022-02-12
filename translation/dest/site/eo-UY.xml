@@ -90,6 +90,7 @@
   <string name="noGameFound">Neniu ludo trovita</string>
   <string name="maybeIncludeMoreGamesFromThePreferencesMenu">Eble inkluzivi pli da ludoj de la menuo de preferoj?</string>
   <string name="openingExplorer">Esplorilo pri malfermoj</string>
+  <string name="openingEndgameExplorer">Esplorilo de malfermoj/finaĵoj</string>
   <string name="xOpeningExplorer">%s esplorilo de malfermoj</string>
   <string name="winPreventedBy50MoveRule">Venko blokita per la regulo pri 50-movoj</string>
   <string name="lossSavedBy50MoveRule">Malvenko ne suferita dank\' al la regulo pri 50-movoj</string>
@@ -364,6 +365,8 @@
   <string name="follow">Sekvi</string>
   <string name="following">Sekvanta</string>
   <string name="unfollow">Malsekvi</string>
+  <string name="followX">Sekvi %s</string>
+  <string name="unfollowX">Malsekvi %s</string>
   <string name="block">Bloki</string>
   <string name="blocked">Blokita</string>
   <string name="unblock">Malbloki</string>
@@ -426,7 +429,7 @@
   <string name="boardEditor">Tabulredaktilo</string>
   <string name="setTheBoard">Antaŭfaru la tabulo</string>
   <string name="popularOpenings">Popularaj malfermoj</string>
-  <string name="endgamePositions">Finluda pozicio</string>
+  <string name="endgamePositions">Finaĵaj pozicioj</string>
   <string name="chess960StartPosition">Ŝako960 komenca pozicio: %s</string>
   <string name="startPosition">Komenca aranĝo</string>
   <string name="clearBoard">Malplenigi tabulon</string>
@@ -645,6 +648,7 @@
   <string name="enableKidMode">Aktivigi infanan reĝimon</string>
   <string name="disableKidMode">Malaktivigi infanan reĝimon</string>
   <string name="security">Sekureco</string>
+  <string name="sessions">Sesioj</string>
   <string name="revokeAllSessions">revoki ĉiujn sesiojn</string>
   <string name="playChessEverywhere">Ludi ŝakon ĉie</string>
   <string name="asFreeAsLichess">Tiom libera kiom lichess</string>

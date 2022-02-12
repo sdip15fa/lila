@@ -32,7 +32,6 @@ boob
 bugger
 buk?kake
 bull?shit
-cancer
 cheat(ing|er|)
 chess(|-|_)bot(.?com)?
 chicken
@@ -43,6 +42,7 @@ cock(suc?k(er|ing)|)
 condom
 coon
 coward?
+cry(baby|ing|)
 cunn?ilingu
 dic?k(head|face|suc?ker|)
 dildo
@@ -62,22 +62,19 @@ hitler+
 homm?o(sexual|)
 honkey
 hooker
-(ho?pe ((yo)?[uy](r family)?( and )*)+ (die|burn)s?|((die|burn)s? irl))
 horny
 humping
 idiot
 incest
 jerk
 jizz?(um|)
-(kill|hang|neck) ((yo)?[uy]r ?(self|family)( and )?)+
-kys
 labia
 lamer?
 lesbo
 lo+ser
 masturbat(e|ion|ing)
 milf
-molest
+molest(er|)
 moron
 mother(fuc?k(er|)|)
 mthrfckr
@@ -152,7 +149,7 @@ weak
 wetback
 wog
 (you|u) suck
-""")
+""") ++ critical
 
   def ru = dict("""
 (|на|по)ху(й|ю|я|ям|йня|йло|йла|йлу)
@@ -241,6 +238,7 @@ gaa?nd
   def fr = dict("""
 fdp
 pd
+pute
 triche(ur|)
 """)
 
@@ -281,6 +279,13 @@ s[ii̇]kecem
 sikiyonuz
 s[ii̇]kt[ii̇]r
 yarra[gğ][iı] yediniz
+""")
+
+  def critical = dict("""
+cancer
+(ho?pe ((yo)?[uy](r family)?( and )*)+ (die|burn)s?|((die|burn)s? irl))
+(kill|hang|neck) ((yo)?[uy]r ?(self|family)( and )?)+
+kys
 """)
 
   private def dict(words: String) = words.linesIterator.filter(_.nonEmpty)

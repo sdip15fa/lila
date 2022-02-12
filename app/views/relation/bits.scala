@@ -47,7 +47,7 @@ object bits {
           if (sugs.nonEmpty) sugs.map { r =>
             tr(
               td(userLink(r.user)),
-              td(showBestPerf(r.user)),
+              ctx.pref.showRatings option td(showBestPerf(r.user)),
               td(
                 r.nbGames.filter(_ > 0).map { nbGames =>
                   a(href := s"${routes.User.games(u.username, "search")}?players.b=${r.user.username}")(
@@ -81,13 +81,13 @@ object bits {
           pager.currentPageResults.map { r =>
             tr(cls := "paginated")(
               td(userLink(r.user)),
-              td(showBestPerf(r.user)),
+              ctx.pref.showRatings option td(showBestPerf(r.user)),
               td(trans.nbGames.plural(r.user.count.game, r.user.count.game.localize)),
               td(actions(r.user.id, relation = r.relation, followable = r.followable, blocked = false))
             )
           },
           pagerNextTable(pager, np => addQueryParameter(call.url, "page", np))
         )
-      else tbody(tr(td(colspan := 2)("None found.", br)))
+      else tbody(tr(td(colspan := 2)(trans.none())))
     )
 }

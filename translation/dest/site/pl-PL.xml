@@ -17,6 +17,8 @@
   <string name="stalemate">Pat</string>
   <string name="white">Białe</string>
   <string name="black">Czarne</string>
+  <string name="asWhite">białymi</string>
+  <string name="asBlack">czarnymi</string>
   <string name="randomColor">Losowo</string>
   <string name="createAGame">Nowa partia</string>
   <string name="whiteIsVictorious">Zwycięstwo białych</string>
@@ -200,6 +202,12 @@
     <item quantity="few">%s godziny</item>
     <item quantity="many">%s godzin</item>
     <item quantity="other">%s godzin</item>
+  </plurals>
+  <plurals name="nbMinutes">
+    <item quantity="one">%s minuta</item>
+    <item quantity="few">%s minuty</item>
+    <item quantity="many">%s minut</item>
+    <item quantity="other">%s minut</item>
   </plurals>
   <string name="time">Tempo</string>
   <string name="rating">Ranking</string>
@@ -394,6 +402,7 @@
   <string name="leaderboard">Najlepsi gracze</string>
   <string name="pasteTheFenStringHere">Wklej tutaj pozycję w formacie FEN</string>
   <string name="pasteThePgnStringHere">Wklej poniżej przebieg partii w formacie PGN</string>
+  <string name="orUploadPgnFile">lub wgraj plik PGN</string>
   <string name="fromPosition">Z pozycji</string>
   <string name="continueFromHere">Kontynuuj z tej pozycji</string>
   <string name="toStudy">Opracowanie</string>
@@ -512,6 +521,7 @@
   <string name="countryOrFlag" comment="countryOrFlag&#10;Appears when you edit your profile. Lets a player add a country/flag (not all flags are for countries) to their profile">Kraj lub flaga</string>
   <string name="thankYou">Dziękujemy!</string>
   <string name="socialMediaLinks">Linki do mediów społecznościowych</string>
+  <string name="oneUrlPerLine">Jeden adres URL na linię.</string>
   <string name="inlineNotation">Notacja ciągła</string>
   <string name="previouslyOnLichessTV">Poprzednio w Lichess TV</string>
   <string name="onlinePlayers">Gracze online</string>
@@ -961,4 +971,8 @@ Pozostaw puste, aby rozpoczynać partie z normalnej pozycji początkowej.</strin
   <string name="abortTheGame">Przerwij partię</string>
   <string name="resignTheGame">Przerwij partię</string>
   <string name="youCantStartNewGame">Nie możesz rozpocząć nowej partii, dopóki ta nie zostanie zakończona.</string>
+  <string name="since">Od</string>
+  <string name="until">Do</string>
+  <string name="lichessDbExplanation">Partie rankingowe pobrane od wszystkich graczy Lichess</string>
+  <string name="switchSides">Zmień kolor</string>
 </resources>

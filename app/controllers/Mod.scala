@@ -34,7 +34,8 @@ final class Mod(
         for {
           inquiry <- env.report.api.inquiries ofModId me.id
           _       <- modApi.setAlt(me, sus, v)
-          _       <- (v && sus.user.enabled) ?? env.closeAccount(sus.user, me)
+          _       <- (v && sus.user.enabled) ?? env.api.accountClosure.close(sus.user, me)
+          _       <- (!v && sus.user.disabled) ?? modApi.reopenAccount(me.id, sus.user.id)
         } yield (inquiry, sus).some
       }
     }(ctx =>
@@ -64,12 +65,16 @@ final class Mod(
       }
     }
 
-  def publicChatTimeout =
-    SecureBody(_.ChatTimeout) { implicit ctx => me =>
+  def publicChatTimeout = {
+    def doTimeout(implicit req: Request[_], me: Holder) =
       FormResult(lila.chat.ChatTimeout.form) { data =>
         env.chat.api.userChat.publicTimeout(data, me)
-      }(ctx.body)
-    }
+      }
+    SecureOrScopedBody(_.ChatTimeout)(
+      secure = ctx => me => doTimeout(ctx.body, me),
+      scoped = req => me => doTimeout(req, me)
+    )
+  }
 
   def booster(username: String, v: Boolean) =
     OAuthModBody(_.MarkBooster) { me =>
@@ -101,13 +106,14 @@ final class Mod(
 
   def warn(username: String, subject: String) =
     OAuthModBody(_.ModMessage) { me =>
-      env.mod.presets.pmPresets.get().named(subject) ?? { preset =>
+      env.mod.presets.getPmPresets(me.user).named(subject) ?? { preset =>
         withSuspect(username) { prev =>
           for {
             inquiry <- env.report.api.inquiries ofModId me.id
             suspect <- modApi.setTroll(me, prev, prev.user.marks.troll)
             _       <- env.msg.api.systemPost(suspect.user.id, preset.text)
             _       <- env.mod.logApi.modMessage(me.id, suspect.user.id, preset.name)
+            _       <- preset.isNameClose ?? env.irc.api.nameClosePreset(username)
           } yield (inquiry, suspect).some
         }
       }
@@ -139,7 +145,7 @@ final class Mod(
     OAuthMod(_.CloseAccount) { _ => me =>
       env.user.repo named username flatMap {
         _ ?? { user =>
-          env.closeAccount(user, me) map some
+          env.api.accountClosure.close(user, me) map some
         }
       }
     }(actionResult(username))
@@ -223,13 +229,15 @@ final class Mod(
                 user = user,
                 mod = me,
                 domain = report.room match {
-                  case Room.Cheat | Room.Boost => ModDomain.Hunt
-                  case Room.Comm               => ModDomain.Comm
+                  case Room.Cheat => ModDomain.Cheat
+                  case Room.Boost => ModDomain.Boost
+                  case Room.Comm  => ModDomain.Comm
                   // spontaneous inquiry
-                  case _ if Granter(_.Admin)(me.user)   => ModDomain.Admin
-                  case _ if Granter(_.Hunter)(me.user)  => ModDomain.Hunt // heuristic
-                  case _ if Granter(_.Shusher)(me.user) => ModDomain.Comm
-                  case _                                => ModDomain.Admin
+                  case _ if Granter(_.Admin)(me.user)       => ModDomain.Admin
+                  case _ if Granter(_.CheatHunter)(me.user) => ModDomain.Cheat // heuristic
+                  case _ if Granter(_.Shusher)(me.user)     => ModDomain.Comm
+                  case _ if Granter(_.BoostHunter)(me.user) => ModDomain.Boost
+                  case _                                    => ModDomain.Admin
 
                 },
                 room = if (report.isSpontaneous) "Spontaneous inquiry" else report.room.name
@@ -324,7 +332,8 @@ final class Mod(
     Secure(_.MarkEngine) { implicit ctx => me =>
       OptionFuResult(env.user.repo named username) { user =>
         assessApi.refreshAssessOf(user) >>
-          env.irwin.api.requests.fromMod(Suspect(user), me) >>
+          env.irwin.irwinApi.requests.fromMod(Suspect(user), me) >>
+          env.irwin.kaladinApi.modRequest(Suspect(user), me) >>
           userC.renderModZoneActions(username)
       }
     }
@@ -393,6 +402,15 @@ final class Mod(
           err => BadRequest(html.mod.search(me, err, Nil)).fuccess,
           query => env.mod.search(query) map { html.mod.search(me, f.fill(query), _) }
         )
+    }
+
+  def gdprErase(username: String) =
+    Secure(_.CloseAccount) { _ => me =>
+      val res = Redirect(routes.User.show(username))
+      env.api.accountClosure.closeThenErase(username, me) map {
+        case Right(msg) => res flashSuccess msg
+        case Left(err)  => res flashFailure err
+      }
     }
 
   protected[controllers] def searchTerm(me: Holder, q: String)(implicit ctx: Context) = {

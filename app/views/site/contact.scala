@@ -37,10 +37,10 @@ object contact {
           a(href := routes.ForumCateg.show("lichess-feedback"))(reportBugInForum())
         ),
         li(
-          a(href := "https://github.com/ornicar/lila/issues")(reportWebsiteIssue())
+          a(href := "https://github.com/lichess-org/lila/issues")(reportWebsiteIssue())
         ),
         li(
-          a(href := "https://github.com/veloce/lichobile/issues")(reportMobileIssue())
+          a(href := "https://github.com/lichess-org/lichobile/issues")(reportMobileIssue())
         ),
         li(
           a(href := "https://discord.gg/lichess")(reportBugInDiscord())
@@ -326,7 +326,7 @@ object contact {
               "gdpr",
               "GDPR",
               frag(
-                p("If you are a European citizen, you may request the deletion of your Lichess account."),
+                p("You may request the deletion of your Lichess account."),
                 p(
                   "First, ",
                   a(href := routes.Account.close)("close your account"),

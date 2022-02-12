@@ -21,7 +21,7 @@ object bits {
       tournamentWinners: List[lila.tournament.Winner]
   )(implicit ctx: Context) =
     frag(
-      div(cls := "lobby__leaderboard lobby__box")(
+      ctx.pref.showRatings option div(cls := "lobby__leaderboard lobby__box")(
         div(cls := "lobby__box__top")(
           h2(cls := "title text", dataIcon := "")(trans.leaderboard()),
           a(cls := "more", href := routes.User.list)(trans.more(), " »")
@@ -42,7 +42,7 @@ object bits {
           )
         )
       ),
-      div(cls := "lobby__winners lobby__box")(
+      div(cls := s"lobby__box ${if (ctx.pref.showRatings) "lobby__winners" else "lobby__wide-winners"}")(
         div(cls := "lobby__box__top")(
           h2(cls := "title text", dataIcon := "")(trans.tournamentWinners()),
           a(cls := "more", href := routes.Tournament.leaderboard)(trans.more(), " »")
@@ -103,6 +103,17 @@ object bits {
         )
       },
       ctx.noKid option (uposts map { views.html.ublog.post.card(_, showAuthor = false, showIntro = false) })
+    )
+
+  def showUnreadLichessMessage(implicit ctx: Context) =
+    nopeInfo(
+      cls := "unread-lichess-message",
+      p("You have received a private message from Lichess."),
+      p(
+        a(cls := "button button-big", href := routes.Msg.convo(lila.user.User.lichessId))(
+          "Click here to read it"
+        )
+      )
     )
 
   def playbanInfo(ban: lila.playban.TempBan)(implicit ctx: Context) =

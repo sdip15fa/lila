@@ -85,6 +85,7 @@ interface CrazyPocket {
 export interface RoundOpts {
   data: RoundData;
   userId?: string;
+  noab?: boolean;
   socketSend: SocketSend;
   onChange(d: RoundData): void;
   element: HTMLElement;
@@ -173,6 +174,7 @@ export interface Pref {
   is3d: boolean;
   keyboardMove: boolean;
   moveEvent: Prefs.MoveEvent;
+  // ratings: boolean;
   replay: Prefs.Replay;
   rookCastle: boolean;
   showCaptured: boolean;

@@ -1,6 +1,5 @@
 package controllers
 
-import play.api.i18n.Lang
 import play.api.mvc._
 import scala.concurrent.duration._
 import scala.util.chaining._
@@ -74,7 +73,7 @@ final class PlayApi(
   // common code for bot & board APIs
   private object impl {
 
-    def gameStream(me: UserModel, pov: Pov)(implicit lang: Lang) =
+    def gameStream(me: UserModel, pov: Pov)(implicit req: RequestHeader) =
       env.game.gameRepo.withInitialFen(pov.game) map { wf =>
         apiC.sourceToNdJsonOption(env.bot.gameStateStream(wf, pov.color, me))
       }
@@ -122,14 +121,21 @@ final class PlayApi(
   def boardCommandGet(cmd: String) =
     ScopedBody(_.Board.Play) { implicit req => me =>
       cmd.split('/') match {
-        case Array("game", id, "chat") =>
-          WithPovAsBoard(id, me) { pov =>
-            env.chat.api.userChat.find(lila.chat.Chat.Id(pov.game.id)) map
-              lila.chat.JsonView.boardApi map JsonOk
-          }
-        case _ => notFoundJson("No such command")
+        case Array("game", id, "chat") => WithPovAsBoard(id, me)(getChat)
+        case _                         => notFoundJson("No such command")
       }
     }
+
+  def botCommandGet(cmd: String) =
+    ScopedBody(_.Bot.Play) { implicit req => me =>
+      cmd.split('/') match {
+        case Array("game", id, "chat") => WithPovAsBot(id, me)(getChat)
+        case _                         => notFoundJson("No such command")
+      }
+    }
+
+  private def getChat(pov: Pov) =
+    env.chat.api.userChat.find(lila.chat.Chat.Id(pov.game.id)) map lila.chat.JsonView.boardApi map JsonOk
 
   // utils
 
@@ -184,7 +190,7 @@ final class PlayApi(
           .botsByIdsCursor(env.bot.onlineApiUsers.get)
           .documentSource(getInt("nb", req) | Int.MaxValue)
           .throttle(50, 1 second)
-          .map { env.user.jsonView.full(_, withOnline = false) }
+          .map { env.user.jsonView.full(_, withOnline = false, withRating = true) }
       }
     }
 }

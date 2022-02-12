@@ -74,7 +74,7 @@ final class Account(
             env.playban.api.currentBan(me.id) map { case (((prefs, povs), nbChallenges), playban) =>
               Ok {
                 import lila.pref.JsonView._
-                env.user.jsonView.full(me, withOnline = true) ++ Json
+                env.user.jsonView.full(me, withOnline = true, withRating = ctx.pref.showRatings) ++ Json
                   .obj(
                     "prefs"        -> prefs,
                     "nowPlaying"   -> JsArray(povs take 50 map env.api.lobbyApi.nowPlaying),
@@ -302,15 +302,17 @@ final class Account(
     AuthBody { implicit ctx => me =>
       NotManaged {
         implicit val req = ctx.body
-        env.security.forms closeAccount me flatMap { form =>
-          FormFuResult(form) { err =>
-            fuccess(html.account.close(me, err, managed = false))
-          } { _ =>
-            env.closeAccount(me, Holder(me)) inject {
-              Redirect(routes.User show me.username) withCookies env.lilaCookie.newSession
+        auth.HasherRateLimit(me.username, ctx.req) { _ =>
+          env.security.forms closeAccount me flatMap { form =>
+            FormFuResult(form) { err =>
+              fuccess(html.account.close(me, err, managed = false))
+            } { _ =>
+              env.api.accountClosure.close(me, Holder(me)) inject {
+                Redirect(routes.User show me.username) withCookies env.lilaCookie.newSession
+              }
             }
           }
-        }
+        }(rateLimitedFu)
       }
     }
 

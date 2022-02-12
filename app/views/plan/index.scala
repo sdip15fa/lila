@@ -111,7 +111,7 @@ ${payPalFormSingle(pricing, "lichess.org lifetime")}
                           checked,
                           value := "me"
                         ),
-                        label(`for` := "dest_me")("Donate as ", me.username)
+                        label(`for` := "dest_me")(donateAsX(me.username))
                       ),
                       div(
                         input(
@@ -318,9 +318,6 @@ ${payPalFormSingle(pricing, "lichess.org lifetime")}
           ".",
           br,
           views.html.site.contact.contactEmailLinkEmpty(bankTransfers()),
-          ".",
-          br,
-          bitcoin(code("15ZA4bBki3uu3yR2ENC2WYa9baVGUZ8Cf8")),
           ".",
           br,
           strong("Please note that only the donation form above will grant the Patron status.")

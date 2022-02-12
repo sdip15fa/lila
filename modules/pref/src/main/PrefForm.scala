@@ -31,15 +31,16 @@ object PrefForm {
         "blindfold"     -> checkedNumber(Pref.Blindfold.choices)
       )(DisplayData.apply)(DisplayData.unapply),
       "behavior" -> mapping(
-        "moveEvent"     -> optional(numberIn(Set(0, 1, 2))),
-        "premove"       -> booleanNumber,
-        "takeback"      -> checkedNumber(Pref.Takeback.choices),
-        "autoQueen"     -> checkedNumber(Pref.AutoQueen.choices),
-        "autoThreefold" -> checkedNumber(Pref.AutoThreefold.choices),
-        "submitMove"    -> checkedNumber(Pref.SubmitMove.choices),
-        "confirmResign" -> checkedNumber(Pref.ConfirmResign.choices),
-        "keyboardMove"  -> optional(booleanNumber),
-        "rookCastle"    -> optional(booleanNumber)
+        "moveEvent"        -> optional(numberIn(Set(0, 1, 2))),
+        "premove"          -> booleanNumber,
+        "takeback"         -> checkedNumber(Pref.Takeback.choices),
+        "autoQueen"        -> checkedNumber(Pref.AutoQueen.choices),
+        "autoThreefold"    -> checkedNumber(Pref.AutoThreefold.choices),
+        "submitMove"       -> checkedNumber(Pref.SubmitMove.choices),
+        "corresEmailNotif" -> optional(booleanNumber),
+        "confirmResign"    -> checkedNumber(Pref.ConfirmResign.choices),
+        "keyboardMove"     -> optional(booleanNumber),
+        "rookCastle"       -> optional(booleanNumber)
       )(BehaviorData.apply)(BehaviorData.unapply),
       "clock" -> mapping(
         "tenths"   -> checkedNumber(Pref.ClockTenths.choices),
@@ -52,7 +53,8 @@ object PrefForm {
       "message"      -> checkedNumber(Pref.Message.choices),
       "studyInvite"  -> optional(checkedNumber(Pref.StudyInvite.choices)),
       "mention"      -> optional(booleanNumber),
-      "insightShare" -> numberIn(Set(0, 1, 2))
+      "insightShare" -> numberIn(Set(0, 1, 2)),
+      "ratings"      -> optional(booleanNumber)
     )(PrefData.apply)(PrefData.unapply)
   )
 
@@ -76,6 +78,7 @@ object PrefForm {
       autoQueen: Int,
       autoThreefold: Int,
       submitMove: Int,
+      corresEmailNotif: Option[Int],
       confirmResign: Int,
       keyboardMove: Option[Int],
       rookCastle: Option[Int]
@@ -97,7 +100,8 @@ object PrefForm {
       message: Int,
       studyInvite: Option[Int],
       mention: Option[Int],
-      insightShare: Int
+      insightShare: Int,
+      ratings: Option[Int]
   ) {
 
     def apply(pref: Pref) =
@@ -121,12 +125,14 @@ object PrefForm {
         premove = behavior.premove == 1,
         animation = display.animation,
         submitMove = behavior.submitMove,
+        corresEmailNotif = behavior.corresEmailNotif.fold(Pref.default.corresEmailNotif)(_ == 1),
         mention = mention.fold(Pref.default.mention)(_ == 1),
         insightShare = insightShare,
         confirmResign = behavior.confirmResign,
         captured = display.captured == 1,
         keyboardMove = behavior.keyboardMove | pref.keyboardMove,
         zen = display.zen | pref.zen,
+        ratings = ratings | pref.ratings,
         resizeHandle = display.resizeHandle | pref.resizeHandle,
         rookCastle = behavior.rookCastle | pref.rookCastle,
         pieceNotation = display.pieceNotation | pref.pieceNotation,
@@ -156,6 +162,7 @@ object PrefForm {
           autoQueen = pref.autoQueen,
           autoThreefold = pref.autoThreefold,
           submitMove = pref.submitMove,
+          corresEmailNotif = (if (pref.corresEmailNotif) 1 else 0).some,
           confirmResign = pref.confirmResign,
           keyboardMove = pref.keyboardMove.some,
           rookCastle = pref.rookCastle.some
@@ -171,7 +178,8 @@ object PrefForm {
         message = pref.message,
         studyInvite = pref.studyInvite.some,
         mention = (if (pref.mention) 1 else 0).some,
-        insightShare = pref.insightShare
+        insightShare = pref.insightShare,
+        ratings = pref.ratings.some
       )
   }
 

@@ -72,6 +72,9 @@ final class UserRepo(val coll: Coll)(implicit ec: scala.concurrent.ExecutionCont
   def usersFromSecondary(userIds: Seq[ID]): Fu[List[User]] =
     byOrderedIds(userIds, ReadPreference.secondaryPreferred)
 
+  def optionsByIds(userIds: Seq[ID]): Fu[List[Option[User]]] =
+    coll.optionsByOrderedIds[User, User.ID](userIds, readPreference = ReadPreference.secondaryPreferred)(_.id)
+
   def enabledByIds(ids: Iterable[ID]): Fu[List[User]] =
     coll.list[User](enabledSelect ++ $inIds(ids), ReadPreference.secondaryPreferred)
 
@@ -173,15 +176,18 @@ final class UserRepo(val coll: Coll)(implicit ec: scala.concurrent.ExecutionCont
     coll
       .update(ordered = false, WriteConcern.Unacknowledged)
       .one(
-        $id(userId) ++ (value < 0).??($doc(F.colorIt $gt -3)),
+        // limit to -3 <= colorIt <= 5 but set when undefined
+        $id(userId) ++ $doc(F.colorIt -> $not(if (value < 0) $lte(-3) else $gte(5))),
         $inc(F.colorIt -> value)
       )
       .unit
 
   def lichess = byId(User.lichessId)
 
-  val irwinId = "irwin"
-  def irwin   = byId(irwinId)
+  val irwinId   = "irwin"
+  def irwin     = byId(irwinId)
+  val kaladinId = "kaladin"
+  def kaladin   = byId(kaladinId)
 
   def setPerfs(user: User, perfs: Perfs, prev: Perfs) = {
     val diff = PerfType.all flatMap { pt =>
@@ -621,6 +627,9 @@ final class UserRepo(val coll: Coll)(implicit ec: scala.concurrent.ExecutionCont
 
   def filterEnabled(userIds: Seq[User.ID]): Fu[Set[User.ID]] =
     coll.distinctEasy[String, Set](F.id, $inIds(userIds) ++ enabledSelect, ReadPreference.secondaryPreferred)
+
+  def filterDisabled(userIds: Seq[User.ID]): Fu[Set[User.ID]] =
+    coll.distinctEasy[String, Set](F.id, $inIds(userIds) ++ disabledSelect, ReadPreference.secondaryPreferred)
 
   def userIdsWithRoles(roles: List[String]): Fu[Set[User.ID]] =
     coll.distinctEasy[String, Set]("_id", $doc("roles" $in roles))

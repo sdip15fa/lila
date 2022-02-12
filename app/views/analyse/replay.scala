@@ -94,16 +94,13 @@ object replay {
         embedJsUnsafeLoadThen(s"""LichessAnalyse.boot(${safeJsonValue(
           Json
             .obj(
-              "data"   -> data,
-              "i18n"   -> jsI18n(),
-              "userId" -> ctx.userId,
-              "chat"   -> chatJson,
-              "explorer" -> Json.obj(
-                "endpoint"          -> explorerEndpoint,
-                "tablebaseEndpoint" -> tablebaseEndpoint
-              )
+              "data"     -> data,
+              "i18n"     -> jsI18n(),
+              "userId"   -> ctx.userId,
+              "chat"     -> chatJson,
+              "explorer" -> views.html.board.bits.explorerConfig
             )
-            .add("hunter" -> isGranted(_.Hunter))
+            .add("hunter" -> isGranted(_.ViewBlurs))
         )})""")
       ),
       openGraph = povOpenGraph(pov).some
@@ -183,7 +180,7 @@ object replay {
           div(cls := "blind-content none")(
             h2("PGN downloads"),
             pgnLinks,
-            input(tpe := "hidden", value := pgn, cls := "game-pgn"),
+            textarea(style := "opacity: 0.01; height: 0", tabindex := -1, cls := "game-pgn")(pgn),
             button(cls := "copy-pgn", dataRel := "game-pgn")(
               "Copy PGN to clipboard"
             )

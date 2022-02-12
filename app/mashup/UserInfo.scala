@@ -68,9 +68,7 @@ object UserInfo {
         relationApi.fetchRelation(_, u.id).mon(_.user segment "relation")
       } zip
         ctx.me.?? { me =>
-          noteApi
-            .get(u, me, Granter(_.ModNote)(me))
-            .mon(_.user segment "notes")
+          fetchNotes(u, me).mon(_.user segment "notes")
         } zip
         ctx.isAuth.?? {
           prefApi.followable(u.id).mon(_.user segment "followable")
@@ -80,6 +78,9 @@ object UserInfo {
         } dmap { case (((relation, notes), followable), blocked) =>
           Social(relation, notes, followable, blocked)
         }
+
+    def fetchNotes(u: User, me: User) =
+      noteApi.get(u, me, Granter(_.ModNote)(me))
   }
 
   case class NbGames(
@@ -131,7 +132,7 @@ object UserInfo {
       playbanApi: lila.playban.PlaybanApi
   )(implicit ec: scala.concurrent.ExecutionContext) {
     def apply(user: User, nbs: NbGames, ctx: Context): Fu[UserInfo] =
-      (ctx.noBlind ?? ratingChartApi(user)).mon(_.user segment "ratingChart") zip
+      ((ctx.noBlind && ctx.pref.showRatings) ?? ratingChartApi(user)).mon(_.user segment "ratingChart") zip
         relationApi.countFollowers(user.id).mon(_.user segment "nbFollowers") zip
         !(user.is(User.lichessId) || user.isBot) ??
         postApi.nbByUser(user.id).mon(_.user segment "nbForumPosts") zip
